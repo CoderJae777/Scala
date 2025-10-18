@@ -4,10 +4,6 @@
 
 _This markdown file documents everything learned in 50.054 Compiler Design and Program Analysis related to Scala_
 
-## Content Page
-
----
-
 - [Lambda Calculus to Scala](#lambda-calculus-to-scala)
 - [Other Terminologies](#other-terminologies)
   - [REPL](#repl)
@@ -44,6 +40,8 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
   - [Summing a List (match)](#summing-a-list-match)
   - [Indexing an element (match)](#indexing-an-element-match)
   - [findMax() function (match)](#findmax-function-match)
+    - [Case #1](#case-1)
+    - [Case #2](#case-2)
 - [Span Function](#span-function)
 - [Currying](#currying)
 - [Function Composition](#function-composition)
@@ -54,23 +52,31 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [case Class](#case-class)
 - [Type Class (Traits)](#type-class-traits)
 - [Higher Kinded Type & Functor Type Class](#higher-kinded-type--functor-type-class)
-- [Kinds vs Types](#kinds-vs-types)
-- [Functor Laws](#functor-laws)
-  - [Why the need?](#why-the-need)
+  - [Kinds vs Types](#kinds-vs-types)
+  - [Functor Laws](#functor-laws)
 - [Foldable Type Class](#foldable-type-class)
+- [Option](#option)
 - [Error Handling with Option Type](#error-handling-with-option-type)
 - [Error Handling with Either Type](#error-handling-with-either-type)
 - [Derived Type Class](#derived-type-class)
+  - [Example of Derived Type Class](#example-of-derived-type-class)
 - [(Continued) Derived show implementation](#continued-derived-show-implementation)
-- [Option](#option)
-  - [Uses of Option](#uses-of-option)
+- [Option](#option-1)
 - [Applicative Functor](#applicative-functor)
+  - [Explanation](#explanation)
+  - [The for-comprehension](#the-for-comprehension)
+  - [Execution](#execution)
+  - [Appicative Laws](#appicative-laws)
+    - [Identiy](#identiy)
+    - [Homomorphism](#homomorphism)
+    - [Interchange](#interchange)
+    - [Composition](#composition)
 
 ---
 
 ## Lambda Calculus to Scala
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 | Lambda Calculus | Scala |
 | -------------------- | ------------------------------ |
 | Variable | x |
@@ -89,11 +95,11 @@ Scala runs imperatively &rarr; step-by-step like C or Java
 
 ## Other Terminologies
 
+[back-to-top](#scala)
+
 ---
 
 ##### REPL
-
-[back-to-top](#content-page)
 
 Read-Eval-Print Loop &rarr; an interactive programming environment where you can type code line by line and immediately see the result.
 
@@ -103,14 +109,13 @@ Read-Eval-Print Loop &rarr; an interactive programming environment where you can
 
 ##### Immutable
 
-[back-to-top](#content-page)
-
 Cannot be changed after creation
 
 ---
 
 ## Running Scala
 
+[back-to-top](#scala)
 Make sure your file extensions is `.scala`
 
 Make sure all your code is nested under an object that extends app
@@ -123,13 +128,7 @@ object name_of_file extends App {
 }
 ```
 
-```scala
-
-```
-
 ---
-
-[back-to-top](#content-page)
 
 1. Using Scalac and Scala commands
 
@@ -175,6 +174,8 @@ _Need to download Scala CLI first_
 
 ## Running test cases in cohort
 
+[back-to-top](#scala)
+
 ```bash
 # Running all Test Cases
 test
@@ -187,7 +188,7 @@ testOnly *TestEx1
 
 ## Functions and Methods
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```scala
 def name_of_function (name_of_parameters : type_of_parameter) : return_type = {
@@ -227,7 +228,7 @@ def flatten[A](l: List[List[A]]) = { }
 
 ## OOP in Scala
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```Scala
 trait FlyBehavior{
@@ -257,7 +258,7 @@ class BlueJay extends Bird("BlueJay", new FlyBehavior(){
 
 ## Variable Types
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ### Val vs Var
 
@@ -283,7 +284,7 @@ val n: Int = 42 //or you can declare yourself
 
 ## Expressions vs Statements
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Expression has value _e.g. 1+2 evaluates to 3_
 - Statement does something but has no meaningful value _e.g. println("hi")_
@@ -292,7 +293,7 @@ val n: Int = 42 //or you can declare yourself
 
 ## If Else
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```scala
 val max = if (a>b) a else b
@@ -304,7 +305,7 @@ val max = if (a>b) a else b
 
 ## Recursion
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ### Regular Recursion
 
@@ -367,7 +368,7 @@ sumTail(List(1,2,3))
 
 ## Map
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Idea: apply the function to every element in the list
 
@@ -448,7 +449,7 @@ val result = nums.flatMap(x => List(x, x + 1))
 
 ## Fold
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Reduce a collection down to a single value by repeatedly applying a function
 - has:
@@ -508,7 +509,7 @@ List(1,2,3).foldRight(0)(_ - _)
 
 ## Filter
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Takes a predicate function (a function that returns true/false)
 - Keeps only elenments for which the function is true
@@ -528,7 +529,7 @@ List(2,4,6)
 
 ## For expression in Scala
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - combination of flatmap and map
 
@@ -559,7 +560,7 @@ List(1,2,3).map(x=>x+1)
 
 ## Enum (Algebraic Data Type example)
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```scala
 enum MathExp {
@@ -601,7 +602,7 @@ val expression = Mult(Plus(Const(1), Const(2), Const(3)))
 
 ## List
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ### Creating an immutable list
 
@@ -688,7 +689,7 @@ E.g.
 
 ## Match
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```Scala
 l match {
@@ -723,7 +724,7 @@ head = 10, tail = List(20,30)
 
 ### Summing a List (match)
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 ```Scala
 def sum(l: List[Int]): Int = {
@@ -854,7 +855,7 @@ case x :: xs =>
 
 ## Span Function
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 INCOMPLETE
 
@@ -876,7 +877,7 @@ def span[A](l: List[A], check: A => Boolean): (List[A], List [A]) = l match {
 
 ## Currying
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 Normal Form
 
@@ -907,7 +908,7 @@ Why?
 
 ## Function Composition
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Combining 2 or more functions to produce a new function
 
@@ -929,7 +930,7 @@ compose: f compose g = f(g(x))
 
 ## Generic/ Polymorphic ADT
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 recall [ADT](#enum-algebraic-data-type-example)
 
@@ -945,6 +946,8 @@ enum List[+A] {
 - BUT it cannot have both Int and String in the same
 
 ## Subtyping inside Enum
+
+[back-to-top](#scala)
 
 ```scala
 enum Shape {
@@ -969,9 +972,8 @@ println(area(r)) // Output: 12.0
 
 ## Covariant and Invariant
 
+[back-to-top](#scala)
 _(not tested)_
-
-[back-to-top](#content-page)
 
 ```scala
 class InvariantBox[A]
@@ -987,7 +989,7 @@ val inv: InvariantBox[Any] = new InvariantBox[String] // Error
 
 ## Function Overloading
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Using the same function name for multiple implementations in different type context
 
@@ -1003,7 +1005,7 @@ def greet(name: String, age: Int): String = s"Hello, $name! You are $age years o
 
 ## case Class
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - An enum with only 1 constructor can be rewritten as a case class
 
@@ -1027,7 +1029,7 @@ case class Person(nume: String, contacts: List[Contact])
 
 ## Type Class (Traits)
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - recall Trait in Java is a class where its methods are compulsory when instantiated
 
@@ -1109,7 +1111,7 @@ given toJSList[A](using jsa:JS[A]):JS[List[A]] = new JS[List[A]] {
 
 ## Higher Kinded Type & Functor Type Class
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - A functor is any type that lets you use `map` to apply a function to its contents, preserving its structure.
 - Lets you write generic code for type constructors (like List, Option, Either), not just for concrete types (like Int, String).
@@ -1137,6 +1139,8 @@ _Why for what?_
 
 ### Kinds vs Types
 
+[back-to-top](#scala)
+
 - **Values** like `42, "hello"` have **Types** `Int, String` respectively
 - **Types** themselves have a "type of types" &rarr; and those are called **KINDS**
 - **Kinds** describes what shape of type arguments a type constructor accepts
@@ -1153,6 +1157,8 @@ val list = List(1,2,3)
 - List(the type constructor) has Kind: \*&rarr;\*
 
 ### Functor Laws
+
+[back-to-top](#scala)
 
 1. Identity Law
 
@@ -1193,6 +1199,7 @@ A 'bad' functor could cheat:
 
 ## Foldable Type Class
 
+[back-to-top](#scala)
 recall [fold](#fold)
 
 Just a trait that defines `foldLeft` and/or `foldRight` methods &rarr; lets you write code that can fold any foldable type, not just lists
@@ -1231,13 +1238,40 @@ println(sum)
 
 ## Option
 
+[back-to-top](#scala)
+
 - The Option type in Scala is used to represent a value that may or may not exists &rarr; safer alternative to `null`
+
+- `Option[A]` is a container that represents "maybe a value" &rarr; either Some(a:A) when a value exists, or None when it doesn't.
+
+It is Scala's safe alternative to null and expresses optionality in the type system.
+
+```scala
+val s: Option[String] = Some("hello")
+val n: Option[String] = None
+val maybe = Option(null)    // => None
+val also = Option("world")  // => Some("world")
+```
+
+#### Uses of Option
+
+Replacing null
+
+```scala
+// before:
+val name: String = System.getenv("NAME")
+val display = if (name!=null) name else "Guest"
+
+// Option
+val nameOpt: Option[String] = Option(System.getenv("NAME"))
+val display = nameOpt.getOrElse("Guest")
+```
 
 ---
 
 ## Error Handling with Option Type
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 A better alternative to try-catch exception
 
 ```scala
@@ -1247,6 +1281,15 @@ enum Option[+A] {
 }
 
 ```
+
+`Some`is a case class that represents the presence of a value in an Option.
+
+`Some(value)` is the alternative to `None` in Scala's `Option` type
+
+- `Some(value)` means there is a value
+- `None` means there is no value
+
+Both together are the 2 possible cases for an `Option`
 
 ```scala
 def eval(e:MathExp):Option[Int] = e match {
@@ -1278,7 +1321,7 @@ eval(Div(Const(1), Minus(Const(2), Const(2))))
 
 ## Error Handling with Either Type
 
-[back-to-top](#content-page)
+[back-to-top](#scala)
 
 - Handle Errors with Option Type has one remaining issue
   - i.e. there is no info with the error in None &rarr; if got multiple cases to check multiple errors, we dont if the error is us trying to divide by 0 or sth else
@@ -1311,34 +1354,35 @@ eval(Div(Const(1), Minus(Const(2), Const(2))))
 
 ## Derived Type Class
 
-- a type class instance that the compiler auto-generates for an algebraic data type (case class/ enum/ sealed trait)
+[back-to-top](#scala)
+
+- A trait that extends trait
 
 - for what? Dont need nearly identical boilerplate for every case class
 
-Simple Show type class
-
 ```scala
-trait Show[T]:
-  def show(t: T): String
+trait Rectangle[A] {
+
+}
+
+trait Square[A] extends Eq[A] {
+
+}
 ```
 
-A case class
+- Every `Square` is also a `Rectangle`, but not every `Rectangle` is a `Square`
+
+### Example of Derived Type Class
 
 ```scala
 case class Person(name: String, age: Int)
-```
 
-Hand-written Show instance
-
-```scala
 given Show[Person] with
   def show(p: Person): String =
     s"Person(name=${p.name}, age=${p.age})"
-```
 
-Usage
+// Implicit Instantiation --> "Whenever you need a Show[Person], use it like this"
 
-```scala
 val p = Person("Ada", 30)
 println(summon[Show[Person]].show(p))
 // Output: Person(name=Ada, age=30)
@@ -1348,11 +1392,7 @@ Now you add a field to the model: Person has country and you did not change the 
 
 ```scala
 case class Person(name:String, age:Int, country: String)
-```
 
-Usage
-
-```scala
 val p2 = Person("Ada", 30, "UK")
 println(summon[Show[Person]].show(p2))
 ```
@@ -1360,7 +1400,7 @@ println(summon[Show[Person]].show(p2))
 Output: `Person(name=Ada, age=30)`
 The country is missing from the output!
 
-Solution : Edit the Show instance to include the new field
+Manual Solution : Edit the Show instance to include the new field
 
 ```scala
 given Show[Person] with
@@ -1372,11 +1412,9 @@ Now imagine you have 500 new field to add.
 
 ## (Continued) Derived show implementation
 
-```scala
+[back-to-top](#scala)
 
-```
-
-Usage
+Using the `derives` keyword &rarr; indicating it is a derived type class
 
 ```scala
 case class Person(name: String, age: Int) derives Show
@@ -1385,7 +1423,7 @@ println(summon[Show[Person]].show(p))
 // Person(Ada, 30)
 ```
 
-Now you add a field
+Now if you need to add a field
 
 ```scala
 case class Person(name: String, age: Int, country: String) derives Show
@@ -1394,37 +1432,110 @@ println(summon[Show[Person]].show(p))
 // Person(Ada, 30, UK)
 ```
 
-Done~
-
----
-
-## Option
-
-`Option[A]` is a container that represents "maybe a value" &rarr; either Some(a:A) when a value exists, or None when it doesn't.
-
-It is Scala's safe alternative to null and expresses optionality in the type system.
-
-```scala
-val s: Option[String] = Some("hello")
-val n: Option[String] = None
-val maybe = Option(null)    // => None
-val also = Option("world")  // => Some("world")
-```
-
-#### Uses of Option
-
-Replacing null
-
-```scala
-// before:
-val name: String = System.getenv("NAME")
-val display = if (name!=null) name else "Guest"
-
-// Option
-val nameOpt: Option[String] = Option(System.getenv("NAME"))
-val display = nameOpt.getOrElse("Guest")
-```
+- tells Scala to automatically generate (derive) an implicit `Show[Person]` instance for you.
 
 ---
 
 ## Applicative Functor
+
+[back-to-top](#scala)
+
+- Allows us to apply functions that take multiple arguments to values
+
+General syntax
+
+```scala
+trait Applicative[F[_]] extends Functor[F] {
+  def ap[A, B](ff: F[A => B])(fa: F[A]): F[B]
+  def pure[A](a: A): F[A]
+  def map[A, B](fa: F[A])(f: A => B): F[B] = ap(pure(f))(fa)
+}
+
+```
+
+Example: To list all outfits, pair every shirt with every pant
+
+```scala
+def map2[A, B, C](fa: List[A], fb: List[B])(f: (A, B) => C): List[C] =
+  for { a <- fa; b <- fb } yield f(a, b)
+
+
+val shirts = List("Blue", "White")
+val pants  = List("Jeans", "Khakis")
+
+val outfits = map2(shirts, pants)((s, p) => s"$s + $p")
+// List("Blue + Jeans", "Blue + Khakis", "White + Jeans", "White + Khakis")
+```
+
+#### Explanation:
+
+map2: take two wrapped values (lists) and a pure function → combine all values inside using that function.
+
+1. Parameter #1: the containers
+
+```scala
+(fa: List[A], fb: List[B])
+```
+
+`fa` is a list of shirts
+`fb` is a list of pants
+
+2. Paramter #2: the combining function
+
+```scala
+(f: (A, B) => C)
+
+```
+
+Takes one A and one B and produces a C (e.g. a full outfit).
+
+#### The for-comprehension
+
+```scala
+for { a <- fa; b <- fb } yield f(a, b)
+
+// Scala automatically rewrites as:
+
+fa.flatMap(a => fb.map(b => f(a, b)))
+
+```
+
+| Part           | What it does                                                                       |
+| -------------- | ---------------------------------------------------------------------------------- |
+| `a <- fa`      | Pull out each element `a` from the first list `fa` (“outer loop”).                 |
+| `flatMap`      | Handles iterating the outer list and _flattening_ the nested lists produced later. |
+| `b <- fb`      | For each `a`, iterate through all elements `b` of the second list (`fb`).          |
+| `map`          | Transforms each `b` into `f(a, b)` and returns a `List[C]`.                        |
+| `yield f(a,b)` | Collects each computed value into the resulting list.                              |
+
+#### Execution:
+
+1. s = "Blue"
+   → map over pants: "Blue + Jeans", "Blue + Khakis"
+
+2. s = "White"
+   → map over pants: "White + Jeans", "White + Khakis"
+
+Then flatMap joins them into:
+
+```scala
+List("Blue + Jeans", "Blue + Khakis", "White + Jeans", "White + Khakis")
+```
+
+---
+
+### Appicative Laws
+
+#### Identiy
+
+```scala
+ap(pure(x => x))(v) == v
+```
+
+If you lift the _identity function_ `(x => x)` into the Applicative and apply it to any wrapped value `v`, nothing changes
+
+#### Homomorphism
+
+#### Interchange
+
+#### Composition
