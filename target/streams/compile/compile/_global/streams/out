@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala:20:70: too many arguments (found 3, expected 2) for method apply: (left: sandbox.Tree[A], right: sandbox.Tree[A]): sandbox.Branch[A] in object Branch[0m
+[0m[[0m[31merror[0m] [0m[0m  val tree: Tree[Int] = Branch(Leaf(1), Branch(Leaf(2), Leaf(3), Leaf(4)))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

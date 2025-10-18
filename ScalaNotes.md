@@ -942,7 +942,7 @@ enum List[+A] {
 ```
 
 - `List[+A]` is generic: it can be `List[Int]`, `List[String]`, etc.
-- BUT it cannot have both Int and String in the same 
+- BUT it cannot have both Int and String in the same
 
 ## Subtyping inside Enum
 
@@ -989,7 +989,7 @@ val inv: InvariantBox[Any] = new InvariantBox[String] // Error
 
 [back-to-top](#content-page)
 
-- use the same function name for multiple implementations in different type context
+- Using the same function name for multiple implementations in different type context
 
 ```scala
 def greet(name: String): String = s"Hello, $name!"
@@ -1005,7 +1005,7 @@ def greet(name: String, age: Int): String = s"Hello, $name! You are $age years o
 
 [back-to-top](#content-page)
 
-- enum with only 1 constructor
+- An enum with only 1 constructor can be rewritten as a case class
 
 ```scala
 enum Person {
@@ -1016,6 +1016,12 @@ enum Person {
 
 case class Person(nume: String, contacts: List[Contact])
 ```
+
+- For what?
+  - `name` and `contacts` are immutable &rarr; once you create a Person, you cannot change their name or contacts
+  - Less boilerplate
+  - Access to automatic methods like equals, hashCode, toString, and copy
+  -
 
 ---
 
@@ -1105,18 +1111,31 @@ given toJSList[A](using jsa:JS[A]):JS[List[A]] = new JS[List[A]] {
 
 [back-to-top](#content-page)
 
-- a type that takes another type constructor as a parameter
+- A functor is any type that lets you use `map` to apply a function to its contents, preserving its structure.
 - Lets you write generic code for type constructors (like List, Option, Either), not just for concrete types (like Int, String).
 - a regular generic type: `List[Int]` &rarr; List takes Int
 - a higher-kinded type: `Functor[F[_]]` &rarr; Functor takes something like List, Option
 
 ```scala
-trait Functor[T[_]] {
-  def map[A,B](t:T[A])(f:A => B):T[B]
+
+// General
+trait Functor[F[_]] {
+  def map[A,B](ta:F[A])(f:A => B):F[B]
 }
+
+// List
+List(1,2,3).map(x => x*2)
 ```
 
-## Kinds vs Types
+- `F[_]` means any type constructor like List, Option
+- `map` takes a container of `A` and a function from `A` to `B`, and returns a container of `B`
+
+_Why for what?_
+
+- Lets you transform data inside containers in a safe, consistent way
+- Keeps the structure, if you map over a list, you still get a list
+
+### Kinds vs Types
 
 - **Values** like `42, "hello"` have **Types** `Int, String` respectively
 - **Types** themselves have a "type of types" &rarr; and those are called **KINDS**
@@ -1133,7 +1152,7 @@ val list = List(1,2,3)
 - `list` has value List(1,2,3), Type: List(Int), Kind : \*
 - List(the type constructor) has Kind: \*&rarr;\*
 
-## Functor Laws
+### Functor Laws
 
 1. Identity Law
 
@@ -1162,7 +1181,7 @@ List(1,2,3).map(g compose f)
 
 ```
 
-### Why the need?
+_Why the need?_
 
 A 'bad' functor could cheat:
 
@@ -1175,6 +1194,44 @@ A 'bad' functor could cheat:
 ## Foldable Type Class
 
 recall [fold](#fold)
+
+Just a trait that defines `foldLeft` and/or `foldRight` methods &rarr; lets you write code that can fold any foldable type, not just lists
+
+_Why for what?_
+
+Lets you write functions that work for any foldable type, not just `List` or `Option` that Scala has inbuilt `foldLeft` and `foldRight` for.
+
+For example you may want to fold other things like `trees`, with foldable type class you can define how folding works for your tree type where inside it you can use generic code like `foldLeft`
+
+```scala
+// Define a binary tree
+// Goal: Reduce all values in binary tree into a single result
+sealed trait Tree[+A]
+case class Leaf[A](value: A) extends Tree[A]
+case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+
+// Implement fold for Tree
+def foldTree[A, B](tree: Tree[A], acc: B)(f: (B, A) => B): B = tree match {
+  case Leaf(value)      => f(acc, value)
+  case Branch(l, r)     =>
+    val leftFolded = foldTree(l, acc)(f)
+    foldTree(r, leftFolded)(f)
+}
+
+// Example usage: sum all values in a tree
+val tree: Tree[Int] = Branch(Leaf(1), Branch(Leaf(2), Leaf(3), Leaf(4)))
+val sum = foldTree(tree, 0)(_ + _)
+println(sum)
+```
+
+- `foldTree` recursively visits every node and combines values using the function `f`
+- You can use it to sum, multiply, or process any tree of values
+
+---
+
+## Option
+
+- The Option type in Scala is used to represent a value that may or may not exists &rarr; safer alternative to `null`
 
 ---
 

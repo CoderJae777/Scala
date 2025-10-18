@@ -1566,3 +1566,693 @@ org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequ
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.lang.Thread.run(Thread.java:1583)
 
+2025.10.18 13:04:05 INFO  Database: jdbc:h2:file:C:\SUTD\2025_Term7\Scala\.metals\metals (H2 2.4)
+2025.10.18 13:04:05 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.18 13:04:05 INFO  Successfully validated 7 migrations (execution time 00:00.006s)
+2025.10.18 13:04:05 INFO  Current version of schema "PUBLIC": 7
+2025.10.18 13:04:05 INFO  Schema "PUBLIC" is up to date. No migration necessary.
+2025.10.18 13:04:10 INFO  Shut down connection with build server.
+2025.10.18 13:04:10 INFO  logging to files C:\SUTD\2025_Term7\50.054 Compiler Design\.metals\metals.log,C:\SUTD\2025_Term7\Scala\.metals\metals.log
+2025.10.18 13:04:10 INFO  Database: jdbc:h2:file:C:\SUTD\2025_Term7\Scala\.metals\metals (H2 2.4)
+2025.10.18 13:04:10 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.18 13:04:10 INFO  Successfully validated 7 migrations (execution time 00:00.006s)
+2025.10.18 13:04:10 INFO  Current version of schema "PUBLIC": 7
+2025.10.18 13:04:10 INFO  Schema "PUBLIC" is up to date. No migration necessary.
+2025.10.18 13:04:11 INFO  Database: jdbc:h2:file:C:\SUTD\2025_Term7\50.054 Compiler Design\.metals\metals (H2 2.4)
+2025.10.18 13:04:11 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.18 13:04:11 INFO  Successfully validated 7 migrations (execution time 00:00.010s)
+2025.10.18 13:04:11 INFO  Current version of schema "PUBLIC": 7
+2025.10.18 13:04:11 INFO  Schema "PUBLIC" is up to date. No migration necessary.
+2025.10.18 13:04:10 INFO  Database: jdbc:h2:file:C:\SUTD\2025_Term7\Scala\.metals\metals (H2 2.4)
+2025.10.18 13:04:10 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.18 13:04:10 INFO  Successfully validated 7 migrations (execution time 00:00.018s)
+2025.10.18 13:04:10 INFO  Current version of schema "PUBLIC": 7
+2025.10.18 13:04:10 INFO  Schema "PUBLIC" is up to date. No migration necessary.
+2025.10.18 13:04:11 INFO  Attempting to connect to the build server...
+2025.10.18 13:04:11 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-launcher-options.json, --envs-file, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-envs.json, C:\SUTD\2025_Term7\50.054 Compiler Design)
+2025.10.18 13:04:11 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\SUTD\2025_Term7\50.054 Compiler Design\.metals\bsp.trace.json or C:\Users\User\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2025.10.18 13:04:17 INFO  time: Connected to build server in 6.15s
+2025.10.18 13:04:17 INFO  Connected to Build server: scala-cli v1.9.0
+2025.10.18 13:04:18 INFO  compiling 50_d5c0a6989e (64 scala sources)
+2025.10.18 13:04:23 INFO  Database: jdbc:h2:file:C:\Users\User\AppData\Roaming\metals\data\metals (H2 2.4)
+2025.10.18 13:04:23 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.18 13:04:23 INFO  Successfully validated 1 migration (execution time 00:00.007s)
+2025.10.18 13:04:23 INFO  Current version of schema "PUBLIC": 1
+2025.10.18 13:04:23 INFO  Schema "PUBLIC" is up to date. No migration necessary.
+2025.10.18 13:04:23 INFO  time: indexed workspace in 5.98s
+2025.10.18 13:04:36 INFO  time: compiled 50_d5c0a6989e in 18s
+2025.10.18 13:04:36 INFO  compiling 50_d5c0a6989e (64 scala sources)
+2025.10.18 13:04:43 INFO  time: compiled 50_d5c0a6989e in 6.67s
+2025.10.18 13:05:29 INFO  no build target found for C:\SUTD\2025_Term7\Scala\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:05:30 INFO  no build target found for C:\SUTD\2025_Term7\Scala\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:05:31 WARN  Could not find semantic tokens for: file:///C:/SUTD/2025_Term7/Scala/build.sbt
+2025.10.18 13:08:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\build.sbt. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:39:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://a2208302-b712-49db-aedb-c9dbf35c9ad1/response_6341c5d7-9388-432f-8ebc-fd574b4e838d/0#%7B%22references%22%3A%5B%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:786)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+Oct 18, 2025 1:43:21 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://a2208302-b712-49db-aedb-c9dbf35c9ad1/response_6341c5d7-9388-432f-8ebc-fd574b4e838d/1#%7B%22references%22%3A%5B%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:786)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+Oct 18, 2025 1:53:38 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://a2208302-b712-49db-aedb-c9dbf35c9ad1/response_664f36d8-a9e4-4088-a072-05f5ea438e73/0#%7B%22references%22%3A%5B%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:786)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:54:12 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 13:54:39 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:40 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 14
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 10
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 18
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 20
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 24
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 33
+2025.10.18 13:54:41 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 34
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 35
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 37
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 41
+2025.10.18 13:54:41 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 48
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 49
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 51
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 52
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 54
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 55
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 59
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 60
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 67
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 72
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 82
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 89
+2025.10.18 13:54:42 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 95
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 96
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 101
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 106
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 109
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 115
+2025.10.18 13:54:43 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 120
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 121
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 124
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 125
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 127
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 135
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:44 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:45 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 140
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 149
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:45 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 156
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 157
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 161
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 164
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 167
+2025.10.18 13:54:46 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 169
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 170
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 176
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 177
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:47 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 185
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 186
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 190
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 191
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: Provider "vscode-chat-code-block" not installed
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:1228)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+Oct 18, 2025 1:54:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: Provider "vscode-chat-code-block" not installed
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:1228)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 197
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 198
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 200
+Oct 18, 2025 1:54:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 202
+Oct 18, 2025 1:54:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 203
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:48 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:49 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 211
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 212
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 224
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: Provider "vscode-chat-code-block" not installed
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:1228)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 233
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 231
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 232
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 247
+Oct 18, 2025 1:54:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: Provider "vscode-chat-code-block" not installed
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:1228)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:54:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:54:52 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 264
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:53 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:54:59 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:01 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:01 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:01 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:03 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:55:05 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 318
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:06 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:06 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:07 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:09 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:09 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:09 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:55:10 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://a2208302-b712-49db-aedb-c9dbf35c9ad1/response_664f36d8-a9e4-4088-a072-05f5ea438e73/0#%7B%22references%22%3A%5B%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:786)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:55:10 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:12 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 13:55:12 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:55:14 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: Provider "vscode-chat-code-block" not installed
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:149)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:209)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:796)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:793)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:1228)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2025.10.18 13:55:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 1:55:14 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 354
+2025.10.18 13:55:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:20 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 13:55:20 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 13:55:20 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:01 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 14:00:01 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:03 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:03 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:03 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:04 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:07 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:07 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:08 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:08 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:08 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:08 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:08 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:09 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:09 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:10 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:10 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:10 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:10 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:11 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:11 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:11 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:11 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:13 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:14 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:15 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 2:00:16 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 572
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:17 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:17 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:17 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:16 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:18 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 14:00:18 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:18 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:50 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 2:00:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 667
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Oct 18, 2025 2:00:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 675
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:52 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:51 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:52 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:52 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:52 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:54 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:54 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:54 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:54 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:55 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:55 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:55 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:55 WARN  no build target for: C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala
+2025.10.18 14:00:55 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:00:55 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.18 14:01:02 INFO  no build target found for C:\SUTD\2025_Term7\Scala\src\main\scala\sandbox.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Exception in thread "pool-118-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:244)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
