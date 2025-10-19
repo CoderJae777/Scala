@@ -8,7 +8,13 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [Other Terminologies](#other-terminologies)
   - [REPL](#repl)
   - [Immutable](#immutable)
+  - [Try](#try)
+  - [Success and Failure](#success-and-failure)
+  - [Some and None](#some-and-none)
 - [Running Scala](#running-scala)
+  - [Using Scalac and Scala commands](#using-scalac-and-scala-commands)
+  - [Using build.sbt (Alternative)](#using-buildsbt-alternative)
+  - [VSC inbuilt run (Another alternative)](#vsc-inbuilt-run-another-alternative-way-to-run-scala)
 - [Running test cases in cohort](#running-test-cases-in-cohort)
 - [Functions and Methods](#functions-and-methods)
 - [OOP in Scala](#oop-in-scala)
@@ -71,6 +77,11 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
     - [Homomorphism](#homomorphism)
     - [Interchange](#interchange)
     - [Composition](#composition)
+- [Monad](#monad)
+- [Syntax Analysis](#syntax-analysis)
+- [Lexing](#lexing)
+- [Parsing](#parsing)
+- [Top Down Parsing](#top-down-parsing)
 
 ---
 
@@ -1630,3 +1641,288 @@ If you lift the _identity function_ `(x => x)` into the Applicative and apply it
 ---
 
 ## Monad
+
+Monad = Applicative + the power to let each next step depend on the previous result (via flatMap / bind).
+
+- `Functor`: you can transform the thing inside one box (map).
+
+- `Applicative`: you can use a normal multi-arg function on several independent boxes (map2, mapN).
+
+- `Monad`: you can decide the next box based on the previous box’s value (flatMap / bind).
+
+In other words: later steps may depend on earlier results.
+
+Think: “run step 1; see its result; based on that, choose step 2.”
+
+```scala
+// General 'Formula'
+
+trait Monad[F[_]] /* extends Applicative[F] */ {
+  def pure[A](a: A): F[A]
+  def flatMap[A,B](fa: F[A])(f: A => F[B]): F[B]  // aka bind
+  // map & ap can be derived if you have flatMap + pure
+}
+
+```
+
+### Example with Option
+
+```scala
+def parseInt(s: String): Option[Int] =
+  s.toIntOption
+
+def safeDiv(a: Int, b: Int): Option[Int] =
+  if b == 0 then None else Some(a / b)
+
+// Monad style (flatMap = “then” that can *depend* on the previous value)
+val result: Option[Int] =
+  parseInt("42").flatMap { n =>
+    parseInt("7").flatMap { d =>
+      safeDiv(n, d)              // choice depends on d
+    }
+  }
+// for-comprehension sugar:
+val result2 =
+  for {
+    n <- parseInt("42")
+    d <- parseInt("7")
+    q <- safeDiv(n, d)           // we can *branch* here
+  } yield q
+```
+
+We use `d` to decide to continue `safeDiv` &rarr; that is the Monad dependency.
+
+Applicative cannot express that branching.
+
+## Functor, Applicative and Monad
+
+_When do I use which?_
+
+- Functor for when you need to map over one container
+- Applicative when you need to combine several containers independently
+- Monad when there is a Step B that depends on Step A
+
+---
+
+## Syntax Analysis
+
+[back-to-top](#scala)
+
+- A compiler turns source text into target code by moving through distinct stages
+- `Source Text` &rarr; `[Lexing]` &rarr; `[Parsing]` &rarr; `[Semantic Analysis]` &rarr; `[Optimization]` &rarr; `[Code Generation]`
+
+## Lexing
+
+[back-to-top](#scala)
+
+- **Input**: Source program in string (a list of characters)
+- **Output**: a list of lexical tokens
+- **Method**: Break things up into a sequence of tokens abd ignore irrelevant things like whitespace and comments
+- Fails when something can't be recognised as a lexical token
+
+```
+Grammar Notation
+          (JSON) J ::= i | 's' | [] | [IS] | {NS}
+        (Items) IS ::= J , IS | J
+(Named Objects) NS ::= N, NS | N
+  (Named Object) N ::= 's' : J
+```
+
+- Left Hand Side &rarr; Non-Terminals
+- Right Hand Side &rarr; Terminals (Tokens) and Non-Terminals (Grammar Variables)
+- `i` denotes an integer
+- `'s'` denotes a string
+
+### Example (Simple)
+
+```scala
+val x = 2
+```
+
+We put the above into a lexer and it would produce:
+
+```scala
+[val][identifier:x][=][number:42]
+```
+
+---
+
+### Example (JSON)
+
+#### Lexer Token Data Type Enum
+
+All possible tokens the lexer can output
+
+```scala
+enum LToken {
+  case IntTok(v:Int)
+  case StrTok(v:String)
+  case SQuote
+  case LBracket; case RBracket
+  case LBrace;  case RBrace
+  case Colon;   case Comma
+  case WhiteSpace
+}
+```
+
+```scala
+{'k1':1,'k2':[]}
+```
+
+We put the above into a lexer and it would produce:
+
+```scala
+List(LBRace, SQuote, StrTok("k1"), SQuote, Colon, IntTok(1), Comma, SQuote,
+     StrTok("k2"), SQuote, Colon, LBracket, RBracket, RBrace)
+```
+
+Notice this illustrates how characters are grouped into tokens—e.g., all digits `1 became `IntTok(1)`; quoted `k1/k2`became`StrTok("k1")`, `StrTok("k2")`, with surrounding quotes as SQuote.
+
+_The lexer does not understand the structure of the code, it doesnt know anything, it just groups characters into meaningful chunks for the parser to make sense of it._
+
+---
+
+## Parsing
+
+- **Input**: A list of lexical tokens
+- **Output**: A parse tree
+- **Method**:
+- Fails when the input cannot be parsed by grammar rule
+
+### Example
+
+```
+1 + 2 * 3
+```
+
+&darr; Lexing &darr;
+
+```
+[NUMBER:1] [PLUS:+] [NUMBER:2] [STAR:*] [NUMBER:3]
+```
+
+&darr; Parsing &darr;
+Takes the tokens and builds a tree that represents the structure (syntax) of the expression, according to grammar rules
+
+```
+     (+)
+    /   \
+ (1)    (*)
+        / \
+      (2) (3)
+```
+
+This is called an Abstract Syntax Tree (AST).
+
+The root is `+`
+The left child is `1`
+The right child is `*`, which has children `2` and `3`
+
+---
+
+### Continued from Lexer Example (JSON)
+
+#### JSON Enum for Parser
+
+```scala
+enum Json {
+  case IntLit(v:Int)
+  case StrLit(v:String)
+  case JsonList(vs: List[Json])
+  case JsonObject(flds: Map[String, Json])
+}
+
+```
+
+After passing the lexer output into the parser, the parser will output the following:
+
+```scala
+// Initial pre-lexer input
+{'k1':1,'k2':[]}
+
+val expected = Some(JsonObject(
+  Map(
+    "k1" -> IntLit(1),
+    "k2" -> JsonList(Nil)
+  )
+))
+
+```
+
+`Some(...) `→ the parser succeeded (it returns `Option[Json]`).
+
+If parsing failed, you’d get None.
+
+`JsonObject( Map( ... ) )` → the root AST node is an object with fields stored in a Scala Map[String, Json].
+
+`"k1"` -> `IntLit(1)` → field k1 has an integer literal value 1.
+
+`"k2"` -> `JsonList(Nil)` → field k2 has a list value that is empty (Nil means empty list), i.e. [].
+
+---
+
+### Deep Dive and How it Works
+
+A **dispatcher** for the parser decides which grammar rule to use by peeking at the first token (the 'lookahead')
+
+```scala
+def parse(toks:List[LToken]):Option[Json] = toks match {
+  case Nil => // Done? what to return?
+  case (t::ts) if t is digit => {
+    val i = parse_an_int(toks); Some(IntLit(i)) }
+  case (t::ts) if t is '\'' => {
+    val s = parse_a_str(toks); Some(StrLit(s)) }
+  case (t::ts) if t is '[' => {
+    val l = parse_a_list(toks); Some(JsonList(l)) }
+  case (t::ts) => {
+    val m = parse_a_map(toks); Some(JsonObject(m)) }
+}
+```
+
+The Parser receives the following output from lexer:
+
+```scala
+LBrace, SQuote, StrTok("k1"), SQuote, Colon, IntTok(1),
+Comma, SQuote, StrTok("k2"), SQuote, Colon, LBracket, RBracket, RBrace
+```
+
+Then it looks at the first token `LBrace` &rarr; it falls into the object/map branch &rarr; use `parse_a_map`
+
+_In other words, the parser knows that "this is a JSON object starting now"_
+
+1. Dispatch: LBrace tells the parser to call the object routine (e.g., parse_a_map).
+2. Consume & discard: the parser consumes the LBrace token (moves the cursor forward). The brace itself is not kept in the AST.
+3. Parse contents: inside, it parses one or more "key" : value pairs, separated by commas.
+4. Close: it expects and consumes the matching RBrace.
+5. Build AST: it returns a `JsonObject(Map[String, Json])` built from those pairs.
+
+```scala
+val m = parse_a_map(toks)
+Some(JsonObject(m))
+```
+
+---
+
+**FIRST TOKEN PARSED**
+
+---
+
+- Parse first pair key "k1"
+
+_Expect `'s'`: consume `SQuote`, `StrTok("k1"), SQuote` → key = `"k1"`._
+
+- Parse colon
+
+_Consume Colon._
+
+.
+.
+.
+
+- Close object
+
+_Lookahead: RBrace → consume it; object ends_
+
+---
+
+## Top Down Parsing
