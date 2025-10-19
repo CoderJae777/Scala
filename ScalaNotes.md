@@ -66,7 +66,7 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
   - [Explanation](#explanation)
   - [The for-comprehension](#the-for-comprehension)
   - [Execution](#execution)
-  - [Appicative Laws](#appicative-laws)
+  - [Applicative Laws](#applicative-laws)
     - [Identiy](#identiy)
     - [Homomorphism](#homomorphism)
     - [Interchange](#interchange)
@@ -1524,9 +1524,11 @@ List("Blue + Jeans", "Blue + Khakis", "White + Jeans", "White + Khakis")
 
 ---
 
-### Appicative Laws
+### Applicative Laws
 
-#### Identiy
+[back-to-top](#scala)
+
+#### Identity
 
 ```scala
 ap(pure(x => x))(v) == v
@@ -1539,3 +1541,7 @@ If you lift the _identity function_ `(x => x)` into the Applicative and apply it
 #### Interchange
 
 #### Composition
+
+---
+
+## Monad
