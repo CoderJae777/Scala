@@ -111,6 +111,41 @@ Read-Eval-Print Loop &rarr; an interactive programming environment where you can
 
 Cannot be changed after creation
 
+##### Try
+
+- A container type that represents a computation that may either result in a value `(Success)` or an exception `(Failure)`. It is used for error handling without throwing exceptions
+
+_Why for what?_
+
+Try (with `Success` and `Failure`) lets you represent computations that can fail, capturing either the result `(Success)` or the error `(Failure)` without throwing exceptions.
+
+---
+
+##### Success and Failure
+
+- A subclass of `Try`
+
+```scala
+Success(42)
+// means the computation succeeded and produced the value 42
+```
+
+---
+
+##### Some and None
+
+- a subclass of [Option](#option) that wraps a value to indicate presence.
+
+```scala
+Some(2)
+```
+
+&uarr; This means the option contains value 2, if there is no value, use `None`
+
+_Why for what?_
+
+Lets you represent the presence and/or absence of a value safely &rarr; a function that might not return a result can return` Option[Int]` instead of just `Int`
+
 ---
 
 ## Running Scala
@@ -1113,29 +1148,56 @@ given toJSList[A](using jsa:JS[A]):JS[List[A]] = new JS[List[A]] {
 
 [back-to-top](#scala)
 
-- A functor is any type that lets you use `map` to apply a function to its contents, preserving its structure.
-- Lets you write generic code for type constructors (like List, Option, Either), not just for concrete types (like Int, String).
-- a regular generic type: `List[Int]` &rarr; List takes Int
-- a higher-kinded type: `Functor[F[_]]` &rarr; Functor takes something like List, Option
-
 ```scala
-
-// General
+// General 'Formula'
 trait Functor[F[_]] {
   def map[A,B](ta:F[A])(f:A => B):F[B]
 }
-
-// List
-List(1,2,3).map(x => x*2)
 ```
 
-- `F[_]` means any type constructor like List, Option
-- `map` takes a container of `A` and a function from `A` to `B`, and returns a container of `B`
+- `[F[_]]` means the trait `Functor` is taking in a type F that has type generic
+- `[A,B]` &rarr; `A` is the type of the elements inside the container F.
+- `B` is the type you get after applying the function f to each element.
+- `(ta:F[A])` &rarr; Argument: Container is a F of A which can be a list of Int for e.g. -`(f:A => B)` &rarr; The Function that transfer A to B -`F[B]` &rarr; the output is a container of B
 
 _Why for what?_
 
 - Lets you transform data inside containers in a safe, consistent way
 - Keeps the structure, if you map over a list, you still get a list
+
+### Without Functor
+
+```scala
+def do10xList(list: List[Int]): List[Int] = list.map(x => x * 10)
+def do10xListOption(opt: Option[Int]): Option[Int] = opt.map(x => x * 10)
+def do10xListTry(t: Try[Int]): Try[Int] = t.map(x => x * 10)
+
+```
+
+### With Functor
+
+```scala
+// General
+trait Functor[F[_]] {
+  def map[A,B](ta:F[A])(f:A => B):F[B]
+}
+
+// Instantiating it --> example of using a List
+def do10xListGeneric[F[_]](
+    container: F[Int]
+)(using functor: Functor[F]): F[Int] = {
+  functor.map(container)(x => x * 10)
+}
+
+// Using the functor
+println(do10xListGeneric(List(1, 2, 3)))
+println (do10xListGeneric(Option(5)))
+println(do10xListGeneric(Try(7)))
+
+
+// Now we can use the do10xListGeneric method with Int, Try, Option
+
+```
 
 ### Kinds vs Types
 
@@ -1440,20 +1502,43 @@ println(summon[Show[Person]].show(p))
 
 [back-to-top](#scala)
 
+- Sits between `Functor` and `Monad`
 - Allows us to apply functions that take multiple arguments to values
 
-General syntax
-
 ```scala
+// General 'formula'
 trait Applicative[F[_]] extends Functor[F] {
-  def ap[A, B](ff: F[A => B])(fa: F[A]): F[B]
   def pure[A](a: A): F[A]
+  def ap[A, B](ff: F[A => B])(fa: F[A]): F[B]
   def map[A, B](fa: F[A])(f: A => B): F[B] = ap(pure(f))(fa)
 }
 
 ```
 
-Example: To list all outfits, pair every shirt with every pant
+1. `pure`: put a plain value into the context
+2. `map2/ap`: apply a function to values that are inside contexts
+
+_Think of context as a box around a value_
+
+- `Option[A]` = maybe-a-value box
+- `List[A]` = many-values box
+- `Future[A]` = value-arrives-later box
+
+```scala
+def add (a: Int, b: Int): Int = a + b
+```
+
+Applicative Functor allows you to use the same `add` but on numbers that are inside context without opening the context
+
+#### Difference with Functor
+
+`Functor` = you have one box `F[A]`. You can run a 1-arg function on what’s inside that one box.
+
+`Applicative` = you have several boxes `F[A]`, `F[B]`, … You can run a normal multi-arg function on the contents of all those boxes at once (as long as they don’t depend on each other).
+
+#### Example
+
+To list all outfits, pair every shirt with every pant
 
 ```scala
 def map2[A, B, C](fa: List[A], fb: List[B])(f: (A, B) => C): List[C] =
@@ -1489,7 +1574,7 @@ map2: take two wrapped values (lists) and a pure function → combine all values
 
 Takes one A and one B and produces a C (e.g. a full outfit).
 
-#### The for-comprehension
+---
 
 ```scala
 for { a <- fa; b <- fb } yield f(a, b)

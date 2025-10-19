@@ -18,6 +18,6 @@ object sandbox extends App {
 
 // Example usage: sum all values in a tree
   val tree: Tree[Int] = Branch(Leaf(1), Branch(Leaf(2), Leaf(5)))
-  val sum = foldTree(tree, 0)(_ + _) 
+  val sum = foldTree(tree, 0)(_ + _)
   println(sum)
 }
