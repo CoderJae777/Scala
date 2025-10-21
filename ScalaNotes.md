@@ -1926,3 +1926,109 @@ _Lookahead: RBrace → consume it; object ends_
 ---
 
 ## Top Down Parsing
+
+[back-to-top](#scala)
+
+- How to make a parser decide the right production predictively (without blind trial-and-error).
+
+- A better alternative to "trying everything"
+
+### Naive Top Down Parsing
+
+Think “match the next symbol, recurse.” If next grammar symbol is a terminal, check the next token; if it’s a nonterminal, try each alternative until one succeeds; accept ε (empty) only when allowed.
+
+---
+
+## Parsec
+
+[back-to-top](#scala)
+
+- Parser as a Monad: sequencing without boilerplate
+- Wraps the function and give it `map` and `flatMap`, so you can chain steps in order :
+
+1. Parse this
+2. Then parse that
+3. Combine results
+
+### Naive Implementations
+
+```scala
+// Grammar Rules
+(1) T ::= xx //T can be 2 x tokens in a row
+(2) T ::= yx //T can be a Y token followed by a X token
+
+// These represents the possible tokens your parser can see
+enum LToken{
+  case XTok
+  case YTok
+}
+
+// Parse result types
+enum T {
+  case XX
+  case YX
+}
+```
+
+Naive Implementation &rarr; we will need one functon for every gramma rule (or pattern) :
+
+- One function to parse XX (two XTok in a row)
+- One function to parse YX (YTok followed by XTok)
+
+### (Continued) Naive Implementation
+
+---
+
+## Monad Option (Better)
+
+_refer to parsec.scala for output_
+
+1. Define basic token parsers
+
+```scala
+def xTok: Parser[LToken, LToken] =
+  Parser {
+    case XTok :: rest => Ok((XTok, rest))
+    case _            => Failed("Expected XTok")
+  }
+
+def yTok: Parser[LToken, LToken] =
+  Parser {
+    case YTok :: rest => Ok((YTok, rest))
+    case _            => Failed("Expected YTok")
+  }
+```
+
+2. Compose for `xx` and `yx` using flatmap/map
+
+This part "brute forces" functions that matches specific sequence of tokens, i.e. if the tokens match the expected patter, the parser returns the corresponding result from your enum, if not it will just fail
+
+```scala
+// T ::= xx
+val parseXX: Parser[LToken, T] =
+  for {
+    _ <- xTok
+    _ <- xTok
+  } yield T.XX
+
+// T ::= yx
+val parseYX: Parser[LToken, T] =
+  for {
+    _ <- yTok
+    _ <- xTok
+  } yield T.YX
+```
+
+3. Combine all alternatives (not xx and yx)
+
+```scala
+def or[A](p1: Parser[LToken, A], p2: Parser[LToken, A]): Parser[LToken, A] =
+  Parser { toks =>
+    p1.p(toks) match {
+      case Failed(_) => p2.p(toks)
+      case ok       => ok
+    }
+  }
+
+val parseT: Parser[LToken, T] = or(parseXX, parseYX)
+```

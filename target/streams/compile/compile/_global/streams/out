@@ -1,7 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\SUTD\2025_Term7\Scala\src\main\scala\functor.scala:38:11: ':' expected but identifier found.[0m
-[0m[[0m[31merror[0m] [0m[0m  )(using functor: Functor[F]): F[Int] = {[0m
-[0m[[0m[31merror[0m] [0m[0m          ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\SUTD\2025_Term7\Scala\src\main\scala\functor.scala:50:1: identifier expected but '}' found.[0m
-[0m[[0m[31merror[0m] [0m[0m}[0m
-[0m[[0m[31merror[0m] [0m[0m^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\SUTD\2025_Term7\Scala\src\main\scala\parsec.scala:82:24: not found: value or[0m
+[0m[[0m[31merror[0m] [0m[0m    parsers.reduceLeft(or)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
