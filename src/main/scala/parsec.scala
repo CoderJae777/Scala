@@ -49,7 +49,7 @@ case class Parser[T, A](p: List[T] => Result[(A, List[T])]) {
 
 object Parsec extends App {
   // Primitive parsers for tokens
-  // It looks at the head of the input list; 
+  // It looks at the head of the input list;
   // if that head is an XTok, it succeeds and returns both the matched token and the tail, otherwise it fails.
   def xTok: Parser[LToken, LToken] =
     Parser {
@@ -64,14 +64,15 @@ object Parsec extends App {
     }
 
   // T ::= xx
-  val parseXX: Parser[LToken, T] =
+  // this parser tries to match two consecutive XTok tokens
+  def parseXX: Parser[LToken, T] =
     for {
       _ <- xTok
       _ <- xTok
     } yield XX
 
   // T ::= yx
-  val parseYX: Parser[LToken, T] =
+  def parseYX: Parser[LToken, T] =
     for {
       _ <- yTok
       _ <- xTok
@@ -97,3 +98,30 @@ object Parsec extends App {
   println(parseT.p(List(XTok, YTok))) // Failed(...)
   println(parseT.p(List(YTok, YTok))) // Failed(...)
 }
+
+// Grammar
+// X ::= XXa | Y
+// Y ::= Yb | c
+
+// Step 1 : Flatten
+// X ::= XXa
+// X ::= Y
+// Y ::= Yb
+// Y ::= c
+
+// Step 2 : Eliminate Left Recursion
+// X ::= XXa | Y
+// Y ::= cY'
+// Y' ::= bY' | ε
+
+// Step 3 : Eliminate left recursion for X
+// X  ::= YX'
+// X' ::= XaX'
+// X' ::= ε
+// Y  ::= cY'
+// Y' ::= bY'
+// Y' ::= ε
+
+// !Left recursion is only when the leftmost symbol is the same as the non-terminal being defined! //
+// i.e. X ::= Xa... is left recursive because it starts with X
+// but X ::= YX is not left recursive because it starts with Y although it ends with X
