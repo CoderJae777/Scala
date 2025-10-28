@@ -92,3 +92,9 @@
 1761619418582:"~runMain OOP"
 1761619425913:sbt "~runMain OOP"
 1761619485419:~runMain OOP
+1761636771859:~runMain FunctionalProgramming
+1761653065956:~runMain PatternMatching
+1761653069045:bt
+1761653072195:sbt
+1761653076283:~runMain PatternMatching
+1761654227724:~runMain Advanced
