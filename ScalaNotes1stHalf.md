@@ -210,6 +210,11 @@ clean
 compile
 run
 
+# If you want it to compile and run everytime u save
+~run
+
+# For specific files
+~runMain name_of_file
 ```
 
 ---

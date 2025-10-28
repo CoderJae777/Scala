@@ -1,3 +1,11 @@
+// ------------------------ //
+// Uncomment EVERTHING to run
+// Ctrl A + Ctrl / to uncomment all
+// ------------------------ //
+
+
+
+
 // Minimal definitions to make the parser combinator example runnable
 
 sealed trait Result[+A]
@@ -47,7 +55,12 @@ case class Parser[T, A](p: List[T] => Result[(A, List[T])]) {
   }
 }
 
+
+
 object Parsec extends App {
+
+
+
   // Primitive parsers for tokens
   // It looks at the head of the input list;
   // if that head is an XTok, it succeeds and returns both the matched token and the tail, otherwise it fails.
