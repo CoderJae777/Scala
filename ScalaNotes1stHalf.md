@@ -6,6 +6,7 @@ _Statically typed &rarr; compiler knows the type of every value before the progr
 
 _This markdown file documents everything learned in 50.054 Compiler Design and Program Analysis related to Scala_
 
+- [Scala](#scala)
 - [Lambda Calculus to Scala](#lambda-calculus-to-scala)
 - [Other Terminologies](#other-terminologies)
   - [REPL](#repl)
@@ -16,7 +17,7 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [Running Scala](#running-scala)
   - [Using Scalac and Scala commands](#using-scalac-and-scala-commands)
   - [Using build.sbt (Alternative)](#using-buildsbt-alternative)
-  - [VSC inbuilt run (Another alternative)](#vsc-inbuilt-run-another-alternative-way-to-run-scala)
+  - [VSC inbuilt run (Another alternative way to run scala)](#vsc-inbuilt-run-another-alternative-way-to-run-scala)
 - [Running test cases in cohort](#running-test-cases-in-cohort)
 - [Functions and Methods](#functions-and-methods)
 - [OOP in Scala](#oop-in-scala)
@@ -60,6 +61,8 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [case Class](#case-class)
 - [Type Class (Traits)](#type-class-traits)
 - [Higher Kinded Type & Functor Type Class](#higher-kinded-type--functor-type-class)
+  - [Without Functor](#without-functor)
+  - [With Functor](#with-functor)
   - [Kinds vs Types](#kinds-vs-types)
   - [Functor Laws](#functor-laws)
 - [Foldable Type Class](#foldable-type-class)
@@ -69,7 +72,6 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [Derived Type Class](#derived-type-class)
   - [Example of Derived Type Class](#example-of-derived-type-class)
 - [(Continued) Derived show implementation](#continued-derived-show-implementation)
-- [Option](#option-1)
 - [Applicative Functor](#applicative-functor)
   - [Explanation](#explanation)
   - [The for-comprehension](#the-for-comprehension)
@@ -82,8 +84,21 @@ _This markdown file documents everything learned in 50.054 Compiler Design and P
 - [Monad](#monad)
 - [Syntax Analysis](#syntax-analysis)
 - [Lexing](#lexing)
+  - [Example (Simple)](#example-simple)
+  - [Example (JSON)](#example-json)
+  - [Lexer Token Data Type Enum](#lexer-token-data-type-enum)
 - [Parsing](#parsing)
+  - [Example](#example)
+  - [Continued from Lexer Example (JSON)](#continued-from-lexer-example-json)
+  - [Deep Dive and How it Works](#deep-dive-and-how-it-works)
 - [Top Down Parsing](#top-down-parsing)
+  - [Naive Top Down Parsing](#naive-top-down-parsing)
+- [Parsec](#parsec)
+  - [Setting Up](#setting-up)
+  - [Naive Implementation](#naive-implementation)
+- [Monad Option (Better)](#monad-option-better)
+- [Dealing with Left Recursion](#dealing-with-left-recursion)
+  - [Math Exp Example](#math-exp-example)
 
 ---
 
@@ -1936,13 +1951,144 @@ _Lookahead: RBrace → consume it; object ends_
 
 [back-to-top](#scala)
 
-- How to make a parser decide the right production predictively (without blind trial-and-error).
+### Big Picture:
 
-- A better alternative to "trying everything"
+- Solves grammar ambiguity and left recursion
+
+#### Grammar Ambiguity &rarr; what does the 2 E mean?
+
+```mathematica
+E ::= E + E | E * E | i
+
+E, T, F are Non-terminal expression (will expand further)
++,-,id,num etc are terminal (literal token from the lexer)
+
+1. Flatten
+E ::= E + E
+E ::= E * E
+E ::= i
+
+2. Resolve Ambiguity by introducing more non-terminals
+E ::= T + E
+E ::= T
+T ::= T * F
+T ::= F
+F ::= i
+```
+
+#### Left Recursion
+
+```mathematica
+...
+T ::= T * F //will keep looping
+...
+
+1. Resolve left recursion
+
+----------------------------------------------------------------
+Formula:
+A ::= A α | β
+
+turns into
+
+A  ::= β A'
+A' ::= α A' | ε
+
+A ↔ T
+α ↔ * F (everything after the leading T in the left-recursive alt)
+β ↔ F (the alternative that doesn’t start with T)
+----------------------------------------------------------------
+
+...
+T  ::= F T'
+T' ::= * F T' | ε
+...
+
+```
+
+What about the rest?
+
+```mathematica
+
+After resolving the left recursion, you have this:
+E  ::=  T + E
+E  ::=  T
+T  ::=  F T'
+T' ::=  * F T' | ε
+T  ::=  F
+F  ::=  i
+
+1. Remove the extra T::=F
+E  ::=  T + E
+E  ::=  T
+T  ::=  F T'
+T' ::=  * F T' | ε
+F  ::=  i
+
+2. Resolve FIRST–FIRST conflict --> E is T + E or E?
+----------------------------------------------------------------
+Formula:
+A ::= α β1 | α β2 (E  ::=  T + E | T)
+
+turns into
+
+A  ::= α A'
+A' ::= β1 | β2
+
+A ↔ E
+α ↔ T
+β1 ↔ +E
+β2 ↔ ε
+----------------------------------------------------------------
+
+Final Grammar:
+E  ::=  T E'
+E'  ::=  + E E' | ε
+T  ::=  F T'
+T' ::=  * F T' | ε
+F  ::=  i
+
+```
+
+First-Follow Problem
+
+```mathematica
+
+Initial Grammar
+S ::= A a
+A ::= a | ε
+
+
+----------------------------------------------------------------
+A ::= α | ε
+P ::= γ1 A γ2
+// with  FIRST(α) ∩ FOLLOW(A) ≠ ∅   (conflict)
+
+turns into
+
+P ::= γ1 α γ2 | γ1 γ2
+
+
+P ↔ S
+A ↔ A
+a ↔ a
+γ1 ↔ ε (nothing before A)
+γ2 ↔ a (the terminal after A)
+----------------------------------------------------------------
+
+Final Output
+S ::= a a | a
+
+
+```
 
 ### Naive Top Down Parsing
 
 Think “match the next symbol, recurse.” If next grammar symbol is a terminal, check the next token; if it’s a nonterminal, try each alternative until one succeeds; accept ε (empty) only when allowed.
+
+### Predictive Top Down Parsing (better alternative)
+
+- Builds a parse from the start symbol downward, using 1 lookahead token to predict exactly which production to apply—no backtracking.
 
 ---
 
@@ -2128,7 +2274,7 @@ The problem: `T ::= T * F` the parser looks at the rule `T is T * F`, so it star
 
 The solution: Edit the Grammar
 
-```scala
+```mathematica
 E::= T + E
 E::= T
 //////////////////////////////////////
@@ -2162,4 +2308,36 @@ asterix <- parseAsterixTok
   f <- parseFactor
   tp <- parseTermP
 } yield MultTermLEP(f, tp)
+```
+
+Another Example
+
+```mathematica
+// Grammar
+// X ::= XXa | Y
+// Y ::= Yb | c
+
+// Step 1 : Flatten
+// X ::= XXa
+// X ::= Y
+// Y ::= Yb
+// Y ::= c
+
+// Step 2 : Eliminate Left Recursion
+// X ::= XXa | Y
+// Y ::= cY'
+// Y' ::= bY' | ε
+
+// Step 3 : Eliminate left recursion for X
+// X  ::= YX'
+// X' ::= XaX'
+// X' ::= ε
+// Y  ::= cY'
+// Y' ::= bY'
+// Y' ::= ε
+
+// !Left recursion is only when the leftmost symbol is the same as the non-terminal being defined! //
+// i.e. X ::= Xa... is left recursive because it starts with X
+// but X ::= YX is not left recursive because it starts with Y although it ends with X
+
 ```
