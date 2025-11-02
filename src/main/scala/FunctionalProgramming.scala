@@ -109,6 +109,8 @@ object FunctionalProgramming extends App {
   println(aPrependedList)
   val anExtendedList = aList ++ List(4, 5, 6)
   println(anExtendedList) // List(1,2,3,4,5,6)
+  println(aList(1))
+  println(aList) // List(1,2,3) - immutable
 
   println("")
   println("Sequences")

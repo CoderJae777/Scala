@@ -99,3 +99,9 @@
 1761653076283:~runMain PatternMatching
 1761654227724:~runMain Advanced
 1761713171802:~runMain PatternMatching
+1762064900532:~runMain Basics
+1762065716128:sbt ~runMain PatternMatching
+1762065729133:~runMain PatternMatching
+1762066582845:~runMain OOP
+1762073712646:~runMain PatternMatching
+1762087762256:~runMain FunctionalProgramming
