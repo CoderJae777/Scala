@@ -479,3 +479,6 @@ WARNING: Unmatched cancel notification for request id 3782
 2025.11.03 10:05:02 INFO  Running BSP server List(C:\Program Files\scala-cli-x86_64-pc-win32\scala-cli.EXE, bsp, --json-options, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-options-v2.json, --json-launcher-options, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-launcher-options.json, --envs-file, C:\SUTD\2025_Term7\50.054 Compiler Design\.scala-build\ide-envs.json, C:\SUTD\2025_Term7\50.054 Compiler Design)
 2025.11.03 10:05:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\SUTD\2025_Term7\50.054 Compiler Design\.metals\bsp.trace.json or C:\Users\User\AppData\Local\scalameta\metals\cache\bsp.trace.json
 2025.11.03 10:05:04 INFO  skipping build import with status 'Dismissed'
+2025.11.03 10:05:25 INFO  BSP server: Starting compilation server
+Nov 03, 2025 10:05:44 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
