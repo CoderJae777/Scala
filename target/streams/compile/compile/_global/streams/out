@@ -1,4 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0mC:\SUTD\2025_Term7\Scala\src\main\scala\Advanced.scala:61:17: not found: value Future[0m
-[0m[[0m[31merror[0m] [0m[0m  val aFuture = Future {[0m
-[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\SchoolWork\Scala\src\main\scala\FunctionalProgramming.scala:113:3: value update is not a member of List[Int][0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean updated?[0m
+[0m[[0m[31merror[0m] [0m[0m  aList(0) = 42 // This will give error because Lists are immutable[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
