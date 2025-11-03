@@ -94,6 +94,126 @@ How? Two mutually defined judgments:
 
 ## Semantic Analysis (8a)
 
-### Static Semantics
+- Syntax Analysis &rarr; verify given code conforms to grammar rules
+- Semantic Analysis &rarr; verify code behave according to human expectation &rarr; how does the program get executed, what does the program compute/return?
+  - Goal #1: Optimization
+  - Goal #2: Fault Detection
+
+### Dynamic Semantic Analysis
+
+1. Testing
+2. Run-time verification &rarr; finding bugs by log
+3. Fuzzing
+
+---
+
+### Static Semantics Analysis
+
+- **Type checking**
+
+```java
+b = true;
+c = b + 1
+// Static error: Type mismatch
+```
+
+- **Name analysis** &rarr; is it a function?
+
+```java
+y = x + 1;
+return y;
+// Static error: x is undefined
+```
+
+- **Control flow analysis** &rarr;“which statements can execute?”, “where are loops/back-edges?”, and “is code unreachable?”.
+- **Data flow analysis** &rarr; how data flow
+- **Model checking** &rarr; step by step input-output checking
+- **Abstract intepretation** &rarr; Approximate program behavior using simpler values to prove properties.
+- **Symbolic Execution**
+
+---
 
 ### Fault Detection
+
+```java
+x = input;
+while (x>=0){
+    x = x - 1
+}
+y = Math.sqrt(x)
+return y;
+
+// Will raise error because if x = 0, you will be square rooting -1
+```
+
+```mathematica
+1: x <- input
+2: t1 <- 0 < x
+3: t2 <- 0 == x
+4: t3 <- t1 + t2 // t1 or t2
+5: ifn t3 goto 8
+6: x = x - 1
+7: goto 2
+8: y <- Math.sqrt(x) // x is definitely negative
+9: rret <- y
+10: ret
+```
+
+### Optimization
+
+```java
+x = input;
+y = 0;
+s = 0;
+while (y < x) {
+    y = y + 1;
+    t = s; // t is not used.
+    s = s + y;
+}
+return s;
+```
+
+```mathematica
+1: x <- input
+2: y <- 0
+3: s <- 0
+4: b <- y < x
+5: ifn b goto 10
+6: y <- y + 1
+7: t <- s // t is not used
+8: s <- s + y
+9: goto 4
+10: rret <- s
+11: ret
+
+```
+
+---
+
+### Rice Theorem
+
+_All non-trivial semantic properties of programs are undecidable, i.e. there exists no algorithm that can decide all semantic properties fro all given programs_
+
+Example: There exists **NO** algorithm in the world that can determine if the x is 1 or -1 without running it
+
+&rarr; the Halting Problem
+
+```python
+def f(path):
+    p = open(path, "r")
+    x = 1
+    if eval(p):
+        x = -1
+    return x
+```
+
+- `eval()` &rarr; evaluates a python expression and returns its value
+
+```python
+eval("2 + 3")
+#5
+
+f = eval("lambda x: x*x")
+f(3)
+# 9
+```
