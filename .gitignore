@@ -1,1 +1,45 @@
+# Metals (Scala language server)
 .metals/
+
+# SBT / Scala build artifacts
+target/
+project/target/
+project/project/
+target-universal/
+lib_managed/
+src_managed/
+ivy-cache/
+
+# Bloop / BSP
+.bloop/
+.bsp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Compiled class files
+*.class
+
+# Ammonite (optional)
+.ammonite/
+
+# Scala CLI / coursier caches (do not commit caches)
+.coursier/
+
+# Ignore sbt/IDE specific metadata
+.history/
+

@@ -95,3 +95,5 @@ How? Two mutually defined judgments:
 ## Semantic Analysis (8a)
 
 ### Static Semantics
+
+### Fault Detection
