@@ -4,7 +4,7 @@ _Statically typed &rarr; compiler knows the type of every value before the progr
 
 ---
 
-_This markdown file documents everything learned in 50.054 Compiler Design and Program Analysis related to Scala_
+_This markdown file documents everything learned in Week 1 to 6 of 50.054 Compiler Design and Program Analysis related to Scala_
 
 - [Scala](#scala)
 - [Lambda Calculus to Scala](#lambda-calculus-to-scala)
