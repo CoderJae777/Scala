@@ -2438,7 +2438,16 @@ Together:
 - FOLLOW(T) ⊇ { `+`, `)`, `$` }
 - FOLLOW(T') ⊇ { `+`, `)`, `$` }
 
-Predictive table M (rows = nonterminals, cols = lookahead):
+### Predictive table M 
+(rows = nonterminals, cols = lookahead):
+
+Example:
+
+E &rarr; T E'
+- FIRST(T E')
+  - FIRST(T) = {`(`, `id`}
+  - so terminals that can START with T E' are `(` and `id`
+
 
 |          | `id`      | `(`       | `+`          | `*`          | `)`          | `$`          |
 |----------|-----------|-----------|--------------|--------------|--------------|--------------|
