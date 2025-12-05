@@ -1193,10 +1193,26 @@ trait Functor[F[_]] {
 - `B` is the type you get after applying the function f to each element.
 - `(ta:F[A])` &rarr; Argument: Container is a F of A which can be a list of Int for e.g. -`(f:A => B)` &rarr; The Function that transfer A to B -`F[B]` &rarr; the output is a container of B
 
-_Why for what?_
+### Why for what?
 
 - Lets you transform data inside containers in a safe, consistent way
 - Keeps the structure, if you map over a list, you still get a list
+
+***Analogy***
+
+Functor &rarr; universal remote control that works on many different TVs
+
+The "on" button &rarr; Functor's Map function
+
+You give it a rule (e.g., “+1” / “uppercase” / “add subtitles”)
+
+When you press the "on" button, its like saying "Map add 10" 
+
+The remote will apply "add 10" to any TV you point at
+
+The TV doesnt change, only its content change
+
+It’s a standard contract: ***“If you give me any structure F[_] that’s a functor, I can transform the inside values without knowing what F really is.”***
 
 ### Without Functor
 
@@ -1718,6 +1734,20 @@ Applicative cannot express that branching.
 
 ## Functor, Applicative and Monad
 
+`Functor` lets you map over a wrapped value,
+
+`Applicative` lets you apply wrapped functions to wrapped values, and 
+
+`Monad` lets you sequence computations where the next step can depend on the previous result.
+
+**TV Analogy**
+
+Functor: “I can transform what’s on a TV.”
+
+Applicative: “I can apply wrapped presets to wrapped TVs (combine effects).”
+
+Monad: “I can run a sequence where each next remote action is chosen using the previous result.”
+
 _When do I use which?_
 
 - Functor for when you need to map over one container
@@ -1726,12 +1756,12 @@ _When do I use which?_
 
 ---
 
-## Syntax Analysis
+## Syntax Analysis (5A)
 
 [back-to-top](#scala)
 
 - A compiler turns source text into target code by moving through distinct stages
-- `Source Text` &rarr; `[Lexing]` &rarr; `[Parsing]` &rarr; `[Semantic Analysis]` &rarr; `[Optimization]` &rarr; `[Code Generation]`
+- `Source Text` &rarr; **`[Lexing]`** &rarr; `[Parsing]` &rarr; `[Semantic Analysis]` &rarr; `[Optimization]` &rarr; `[Code Generation]`
 
 ## Lexing
 
@@ -1739,8 +1769,10 @@ _When do I use which?_
 
 - **Input**: Source program in string (a list of characters)
 - **Output**: a list of lexical tokens
-- **Method**: Break things up into a sequence of tokens abd ignore irrelevant things like whitespace and comments
+- **Method**: Break things up into a sequence of tokens and ignore irrelevant things like whitespace and comments
 - Fails when something can't be recognised as a lexical token
+
+`tokens` are terminals of the grammar (“terminals = lexical tokens”). 
 
 ```
 Grammar Notation
@@ -1805,6 +1837,7 @@ _The lexer does not understand the structure of the code, it doesnt know anythin
 ---
 
 ## Parsing
+- `Source Text` &rarr; `[Lexing]` &rarr; **`[Parsing]`** &rarr; `[Semantic Analysis]` &rarr; `[Optimization]` &rarr; `[Code Generation]`
 
 - **Input**: A list of lexical tokens
 - **Output**: A parse tree
@@ -2086,6 +2119,8 @@ S ::= a a | a
 
 Think “match the next symbol, recurse.” If next grammar symbol is a terminal, check the next token; if it’s a nonterminal, try each alternative until one succeeds; accept ε (empty) only when allowed.
 
+Subjected to Left Recursion loops, excessive backtracking, limited lookahead, no error recovery
+
 ### Predictive Top Down Parsing (better alternative)
 
 - Builds a parse from the start symbol downward, using 1 lookahead token to predict exactly which production to apply—no backtracking.
@@ -2344,4 +2379,73 @@ Another Example
 
 ```
 
----
+### LL(1) Predictive Parsing Table (Step-by-step)
+Grammar (Clean - no left recursion):
+
+```
+E  → T E'
+E' → + T E' | ε
+T  → F T'
+T' → * F T' | ε
+F  → ( E ) | id
+```
+
+#### Key FIRST:
+- FIRST(X) is the set of terminals that **can appear first** when X expands, it never includes nonterminals or later tokens in a sequence
+<br>
+- For FIRST(F) for e.g. , because the grammar is F &rarr; (E) | id, the **FIRST** one that appears is `(` and `id`, therefore: 
+FIRST(F) =  { `(`, `id` }
+<br>
+- For FIRST(T) the **FIRST** that appears is `F`, which means FIRST(T) = FIRST (F) = { `(`, `id` }
+<br>
+- For FIRST(E) the **FIRST** that appears is `T`, which means FIRST(E) = FIRST(T) = FIRST(F) = { `(`, `id` }
+<br>
+- For FIRST(E') the **FIRST** that appears is `+`, then theres another possibility in `ε`, which means FIRST(E) = { `+`, ε }
+<br>
+- For FIRST(T') the **FIRST** that appears is `*`, then theres another possibility in `ε`, which means FIRST(T') = { `*`, ε }
+<br>
+Together:
+- FIRST(F) = { `(`, `id` }
+- FIRST(T) = { `(`, `id` }
+- FIRST(E) = { `(`, `id` }
+- FIRST(E') = { `+`, ε }
+- FIRST(T') = { `*`, ε }
+
+#### Key FOLLOW (highlights): 
+- FOLLOW(X) is the set of terminals that can immediately appear to the right of nonterminal X in some sentential form. plus `$` if A can reach the end of input
+
+- `sentential` form is any string you can get by starting from the grammar's start symbol
+<br>
+
+
+- Initialise: FOLLOW(Start) = `{$}` &rarr; FOLLOW(E) = `{$}`
+<br>
+- For **E &rarr; T E'**, FOLLOW(T) receives:
+  - The terminal "+" because E' can start with +
+  - Everything in FOLLOW(E) because E' can disappear
+    - FOLLOW(E) &rarr; {"`)`", "`$`"}
+      - Because F &rarr; ( E ) | id and `)` follows E
+- All in all, FOLLOW(T) ⊇ { `+`, `)`, `$` }
+- _Think of `$` as a special terminal that represents “no more tokens after this point.”_
+
+
+<br>
+
+
+- FOLLOW(F) = { `)`, `$` }
+- FOLLOW(E) = { `)`, `$` }
+- FOLLOW(E') = { `)`, `$` }
+- FOLLOW(T) ⊇ { `+`, `)`, `$` }
+- FOLLOW(T') ⊇ { `+`, `)`, `$` }
+
+Predictive table M (rows = nonterminals, cols = lookahead):
+
+|          | `id`      | `(`       | `+`          | `*`          | `)`          | `$`          |
+|----------|-----------|-----------|--------------|--------------|--------------|--------------|
+| `E`      | E → T E'  | E → T E'  |              |              |              |              |
+| `E'`     |           |           | E' → + T E'  |              | E' → ε       | E' → ε       |
+| `T`      | T → F T'  | T → F T'  |              |              |              |              |
+| `T'`     |           |           | T' → ε       | T' → * F T'  | T' → ε       | T' → ε       |
+| `F`      | F → id    | F → ( E ) |              |              |              |              |
+
+Cells filled per rules: use FIRST of RHS; if RHS can be ε, use FOLLOW of LHS.

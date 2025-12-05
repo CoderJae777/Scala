@@ -1,3 +1,27 @@
+---
+title: "Scala Notes (Week 7–12)"
+toc: true
+toc-depth: 3
+toc-title: "Contents"
+number-sections: true
+header-includes:
+  - '\usepackage{fontspec}'
+  - '\setmainfont{Segoe UI}'
+  - '\setsansfont{Segoe UI}'
+  - '\setmonofont{Consolas}'
+  - '\usepackage{unicode-math}'
+  - '\setmathfont{Latin Modern Math}'
+  - '\usepackage{fancyhdr}'
+  - '\pagestyle{fancy}'
+  - '\fancyhead{}'
+  - '\fancyfoot[C]{\\thepage}'
+  - '\pagenumbering{arabic}'
+  - '\usepackage{hyperref}'
+  - '\hypersetup{linktocpage=true,colorlinks=true}'
+
+# Scala
+---
+
 # Scala
 
 _Lecture 6b onwards_
