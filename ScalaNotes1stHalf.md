@@ -7,98 +7,106 @@ _Statically typed &rarr; compiler knows the type of every value before the progr
 _This markdown file documents everything learned in Week 1 to 6 of 50.054 Compiler Design and Program Analysis related to Scala_
 
 - [Scala](#scala)
-- [Lambda Calculus to Scala](#lambda-calculus-to-scala)
-- [Other Terminologies](#other-terminologies)
-  - [REPL](#repl)
-  - [Immutable](#immutable)
-  - [Try](#try)
-  - [Success and Failure](#success-and-failure)
-  - [Some and None](#some-and-none)
-- [Running Scala](#running-scala)
-  - [Using Scalac and Scala commands](#using-scalac-and-scala-commands)
-  - [Using build.sbt (Alternative)](#using-buildsbt-alternative)
-  - [VSC inbuilt run (Another alternative way to run scala)](#vsc-inbuilt-run-another-alternative-way-to-run-scala)
-- [Running test cases in cohort](#running-test-cases-in-cohort)
-- [Functions and Methods](#functions-and-methods)
-- [OOP in Scala](#oop-in-scala)
-- [Variable Types](#variable-types)
-  - [Val vs Var](#val-vs-var)
-- [Type Inference](#type-inference)
-- [Expressions vs Statements](#expressions-vs-statements)
-- [If Else](#if-else)
-- [Recursion](#recursion)
-  - [Regular Recursion](#regular-recursion)
-  - [Tail Recursion Optimisation](#tail-recursion-optimisation)
-- [Map](#map)
-  - [FlatMap](#flatmap)
-- [Fold](#fold)
-  - [foldRight vs foldLeft](#foldright-vs-foldleft)
-- [Filter](#filter)
-- [For expression in Scala](#for-expression-in-scala)
-- [Enum (Algebraic Data Type example)](#enum-algebraic-data-type-example)
-  - [Using enum (ADT example)](#using-enum-adt-example)
-- [List](#list)
-  - [Creating an immutable list](#creating-an-immutable-list)
-  - [Accessing Elements](#accessing-elements)
-  - [Attempting to Modify a list](#attempting-to-modify-a-list)
-  - [Iterating over a list](#iterating-over-a-list)
-  - [Flattening a list](#flattening-a-list)
-  - [Pattern Matching with Lists](#pattern-matching-with-lists)
-  - [Pattern Constructors](#pattern-constructors)
-- [Match](#match)
-  - [Summing a List (match)](#summing-a-list-match)
-  - [Indexing an element (match)](#indexing-an-element-match)
-  - [findMax() function (match)](#findmax-function-match)
-    - [Case #1](#case-1)
-    - [Case #2](#case-2)
-- [Span Function](#span-function)
-- [Currying](#currying)
-- [Function Composition](#function-composition)
-- [Generic/ Polymorphic ADT](#generic-polymorphic-adt)
-- [Subtyping inside Enum](#subtyping-inside-enum)
-- [Covariant and Invariant](#covariant-and-invariant)
-- [Function Overloading](#function-overloading)
-- [case Class](#case-class)
-- [Type Class (Traits)](#type-class-traits)
-- [Higher Kinded Type & Functor Type Class](#higher-kinded-type--functor-type-class)
-  - [Without Functor](#without-functor)
-  - [With Functor](#with-functor)
-  - [Kinds vs Types](#kinds-vs-types)
-  - [Functor Laws](#functor-laws)
-- [Foldable Type Class](#foldable-type-class)
-- [Option](#option)
-- [Error Handling with Option Type](#error-handling-with-option-type)
-- [Error Handling with Either Type](#error-handling-with-either-type)
-- [Derived Type Class](#derived-type-class)
-  - [Example of Derived Type Class](#example-of-derived-type-class)
-- [(Continued) Derived show implementation](#continued-derived-show-implementation)
-- [Applicative Functor](#applicative-functor)
-  - [Explanation](#explanation)
-  - [The for-comprehension](#the-for-comprehension)
-  - [Execution](#execution)
-  - [Applicative Laws](#applicative-laws)
-    - [Identiy](#identiy)
-    - [Homomorphism](#homomorphism)
-    - [Interchange](#interchange)
-    - [Composition](#composition)
-- [Monad](#monad)
-- [Syntax Analysis](#syntax-analysis)
-- [Lexing](#lexing)
-  - [Example (Simple)](#example-simple)
-  - [Example (JSON)](#example-json)
-  - [Lexer Token Data Type Enum](#lexer-token-data-type-enum)
-- [Parsing](#parsing)
-  - [Example](#example)
-  - [Continued from Lexer Example (JSON)](#continued-from-lexer-example-json)
-  - [Deep Dive and How it Works](#deep-dive-and-how-it-works)
-- [Top Down Parsing](#top-down-parsing)
-  - [Naive Top Down Parsing](#naive-top-down-parsing)
-- [Parsec](#parsec)
-  - [Setting Up](#setting-up)
-  - [Naive Implementation](#naive-implementation)
-- [Monad Option (Better)](#monad-option-better)
-- [Dealing with Left Recursion](#dealing-with-left-recursion)
-  - [Math Exp Example](#math-exp-example)
+  - [Lambda Calculus to Scala](#lambda-calculus-to-scala)
+  - [Other Terminologies](#other-terminologies) - [REPL](#repl) - [Immutable](#immutable) - [Try](#try) - [Success and Failure](#success-and-failure) - [Some and None](#some-and-none)
+  - [Running Scala](#running-scala)
+  - [Running test cases in cohort](#running-test-cases-in-cohort)
+  - [Functions and Methods](#functions-and-methods)
+  - [OOP in Scala](#oop-in-scala)
+  - [Variable Types](#variable-types)
+    - [Val vs Var](#val-vs-var)
+  - [Type Inference](#type-inference)
+  - [Expressions vs Statements](#expressions-vs-statements)
+  - [If Else](#if-else)
+  - [Recursion](#recursion)
+    - [Regular Recursion](#regular-recursion)
+    - [Tail Recursion Optimisation](#tail-recursion-optimisation)
+  - [Map](#map)
+    - [FlatMap](#flatmap)
+  - [Fold](#fold)
+    - [foldRight vs foldLeft](#foldright-vs-foldleft)
+  - [Filter](#filter)
+  - [For expression in Scala](#for-expression-in-scala)
+  - [Enum (Algebraic Data Type example)](#enum-algebraic-data-type-example)
+    - [Using enum (ADT example)](#using-enum-adt-example)
+  - [List](#list)
+    - [Creating an immutable list](#creating-an-immutable-list)
+    - [Accessing Elements](#accessing-elements)
+    - [Attempting to Modify a list](#attempting-to-modify-a-list)
+    - [Iterating over a list](#iterating-over-a-list)
+    - [Flattening a list](#flattening-a-list)
+    - [Pattern Matching with Lists](#pattern-matching-with-lists)
+    - [Pattern Constructors](#pattern-constructors)
+  - [Match](#match)
+    - [Summing a List (match)](#summing-a-list-match)
+    - [Indexing an element (match)](#indexing-an-element-match)
+    - [findMax() function (match)](#findmax-function-match)
+      - [Case #1](#case-1)
+      - [Case #2](#case-2)
+  - [Span Function](#span-function)
+  - [Currying](#currying)
+  - [Function Composition](#function-composition)
+  - [Generic/ Polymorphic ADT](#generic-polymorphic-adt)
+  - [Subtyping inside Enum](#subtyping-inside-enum)
+  - [Covariant and Invariant](#covariant-and-invariant)
+  - [Function Overloading](#function-overloading)
+  - [case Class](#case-class)
+  - [Type Class (Traits)](#type-class-traits)
+  - [Higher Kinded Type & Functor Type Class](#higher-kinded-type--functor-type-class)
+    - [Why for what?](#why-for-what)
+    - [Without Functor](#without-functor)
+    - [With Functor](#with-functor)
+    - [Kinds vs Types](#kinds-vs-types)
+    - [Functor Laws](#functor-laws)
+  - [Foldable Type Class](#foldable-type-class)
+  - [Option](#option)
+    - [Uses of Option](#uses-of-option)
+  - [Error Handling with Option Type](#error-handling-with-option-type)
+  - [Error Handling with Either Type](#error-handling-with-either-type)
+  - [Derived Type Class](#derived-type-class)
+    - [Example of Derived Type Class](#example-of-derived-type-class)
+  - [(Continued) Derived show implementation](#continued-derived-show-implementation)
+  - [Applicative Functor](#applicative-functor)
+    - [Difference with Functor](#difference-with-functor)
+    - [Example](#example)
+    - [Explanation:](#explanation)
+    - [Execution:](#execution)
+    - [Applicative Laws](#applicative-laws)
+      - [Identity](#identity)
+      - [Homomorphism](#homomorphism)
+      - [Interchange](#interchange)
+      - [Composition](#composition)
+  - [Monad](#monad)
+    - [Example with Option](#example-with-option)
+  - [Functor, Applicative and Monad](#functor-applicative-and-monad)
+  - [Syntax Analysis (5A)](#syntax-analysis-5a)
+  - [Lexing](#lexing)
+    - [Example (Simple)](#example-simple)
+    - [Example (JSON)](#example-json)
+      - [Lexer Token Data Type Enum](#lexer-token-data-type-enum)
+  - [Parsing](#parsing)
+    - [Example](#example-1)
+    - [Continued from Lexer Example (JSON)](#continued-from-lexer-example-json)
+      - [JSON Enum for Parser](#json-enum-for-parser)
+    - [Deep Dive and How it Works](#deep-dive-and-how-it-works)
+  - [Top Down Parsing](#top-down-parsing)
+    - [Big Picture:](#big-picture)
+      - [Grammar Ambiguity &rarr; what does the 2 E mean?](#grammar-ambiguity--what-does-the-2-e-mean)
+      - [Left Recursion](#left-recursion)
+    - [LL(1) Predictive Parsing Table (Step-by-step)](#ll1-predictive-parsing-table-step-by-step)
+      - [Key FIRST:](#key-first)
+      - [Key FOLLOW (highlights):](#key-follow-highlights)
+    - [Predictive table](#predictive-table)
+      - [Construction Rules:](#construction-rules)
+      - [Constructing the table](#constructing-the-table)
+    - [Naive Top Down Parsing](#naive-top-down-parsing)
+    - [Predictive Top Down Parsing (better alternative)](#predictive-top-down-parsing-better-alternative)
+  - [Parsec](#parsec)
+    - [Setting Up](#setting-up)
+    - [Naive Implementation](#naive-implementation)
+  - [Monad Option (Better)](#monad-option-better)
+  - [Dealing with Left Recursion](#dealing-with-left-recursion)
+    - [Math Exp Example](#math-exp-example)
 
 ---
 
@@ -1198,7 +1206,7 @@ trait Functor[F[_]] {
 - Lets you transform data inside containers in a safe, consistent way
 - Keeps the structure, if you map over a list, you still get a list
 
-***Analogy***
+**_Analogy_**
 
 Functor &rarr; universal remote control that works on many different TVs
 
@@ -1206,13 +1214,13 @@ The "on" button &rarr; Functor's Map function
 
 You give it a rule (e.g., “+1” / “uppercase” / “add subtitles”)
 
-When you press the "on" button, its like saying "Map add 10" 
+When you press the "on" button, its like saying "Map add 10"
 
 The remote will apply "add 10" to any TV you point at
 
 The TV doesnt change, only its content change
 
-It’s a standard contract: ***“If you give me any structure F[_] that’s a functor, I can transform the inside values without knowing what F really is.”***
+It’s a standard contract: **_“If you give me any structure F[_] that’s a functor, I can transform the inside values without knowing what F really is.”\_**
 
 ### Without Functor
 
@@ -1736,7 +1744,7 @@ Applicative cannot express that branching.
 
 `Functor` lets you map over a wrapped value,
 
-`Applicative` lets you apply wrapped functions to wrapped values, and 
+`Applicative` lets you apply wrapped functions to wrapped values, and
 
 `Monad` lets you sequence computations where the next step can depend on the previous result.
 
@@ -1772,7 +1780,7 @@ _When do I use which?_
 - **Method**: Break things up into a sequence of tokens and ignore irrelevant things like whitespace and comments
 - Fails when something can't be recognised as a lexical token
 
-`tokens` are terminals of the grammar (“terminals = lexical tokens”). 
+`tokens` are terminals of the grammar (“terminals = lexical tokens”).
 
 ```
 Grammar Notation
@@ -1837,6 +1845,7 @@ _The lexer does not understand the structure of the code, it doesnt know anythin
 ---
 
 ## Parsing
+
 - `Source Text` &rarr; `[Lexing]` &rarr; **`[Parsing]`** &rarr; `[Semantic Analysis]` &rarr; `[Optimization]` &rarr; `[Code Generation]`
 
 - **Input**: A list of lexical tokens
@@ -2039,7 +2048,7 @@ T' ::= * F T' | ε
 
 ```
 
-What about the rest?
+What about the rest? (FIRST-FIRST Conflict)
 
 ```mathematica
 
@@ -2083,7 +2092,7 @@ F  ::=  i
 
 ```
 
-First-Follow Problem
+FIRST-FOLLOW Conflict
 
 ```mathematica
 
@@ -2115,13 +2124,168 @@ S ::= a a | a
 
 ```
 
-### Naive Top Down Parsing
+### LL(1) Predictive Parsing Table (Step-by-step)
+
+Grammar (Clean - no left recursion):
+
+```
+E  → T E'
+E' → + T E' | ε
+T  → i
+```
+
+#### Key FIRST:
+
+- FIRST(X) is the set of terminals that **can appear first** when X expands, it never includes nonterminals or later tokens in a sequence
+
+<br>
+
+- For FIRST(E) for e.g., the grammar is E &rarr; T E', so the **first one that appears** is T, therefore:
+
+<div align="center">
+FIRST(E) = FIRST(T) = {i}
+</div>
+
+<br>
+
+- For FIRST(E'), the grammar is E1 &rarr; + T E' | ε, so the **first ones that** appears is + and ε, therefore:
+
+<div align="center">
+FIRST(E') = +
+FIRST(E') = ε
+</div>
+
+<br>
+
+- For FIRST(T) the grammar is T &rarr; i, so the first one that appears is i, therefore:
+
+<div align="center">
+FIRST(T) = {i}
+</div>
+
+Together:
+
+```
+FIRST(E) = {i}
+FIRST(E') = {+, ε}
+FIRST(T) = {i}
+```
+
+#### Key FOLLOW (highlights):
+
+- FOLLOW(X) is the set of terminals that can immediately appear to the right of nonterminal X in some sentential form. plus `$` if A can reach the end of input
+
+- `sentential` form is any string you can get by starting from the grammar's start symbol
+  <br>
+
+- Initialise: FOLLOW(Start) = `{$}` &rarr; FOLLOW(E) = `{$}`
+  <br>
+
+- For FOLLOW(E'), the grammar is E &rarr; T E', therefore:
+
+<div align='center'>
+FOLLOW(E') = FOLLOW(E) = {$}
+</div>
+
+<br>
+
+- For FOLLOW(T), there is 2 grammar
+  - E' &rarr; + T E'and
+  - E &rarr; T E',
+  therefore:
+  <div align='center'>
+  FOLLOW(T) = {+, FOLLOW(E)} = {+, $} 
+  </div>
+
+<br>
+
+Together,
+
+```
+FOLLOW(E) = {$}
+FOLLOW(E') = {$}
+FOLLOW(T) = {+, $}
+```
+
+### Predictive table
+
+(rows = nonterminals, cols = lookahead):
+
+Recall the grammar:
+
+```
+E  → T E'
+E' → + T E' | ε
+T  → i
+```
+
+First Follow Keys
+
+```
+FIRST(E) = {i}
+FIRST(E') = {+, ε}
+FIRST(T) = {i}
+FOLLOW(E) = {$}
+FOLLOW(E') = {$}
+FOLLOW(T) = {+, $}
+```
+
+Rows are E, E', T
+Columns are T, E', +, ε, i
+
+<br>
+
+#### Construction Rules:
+
+1. For every terminal `a` in FIRST(α), put `A → α` in table cell M[A, a].
+2. If ε ∈ FIRST(α), then for every terminal b in FOLLOW(A) (including $), put `A → α` into M[A, b]
+
+Each table cell must get at most one production. If two productions compete for the same cell, the grammar is not LL(1) and needs rewriting (usually by left factoring or removing left recursion).
+
+#### Constructing the table
+
+1. FIRST(E) = i (α = E, a = i)
+   Find which non-terminal &rarr; i (A &rarr; a)
+   T → i, but we cannot put T → i into M[E,i],
+   E → T E' can
+   So we put E → T E' into M[E,i]
+
+<br>
+
+2. FIRST(E') = + (α = E', a = +)
+   Find which non-terminal &rarr; + (A &rarr; a)
+   E' → + T E'
+   So we put `E' → + T E'` into M[E',+] (M[A,a])
+
+<br>
+
+3. FIRST(E') = ε (α = E', a = ε)
+   Find which non-terminal &rarr; ε (A &rarr; a)
+   E' → ε
+   So we put `E' → ε` into M[E',ε] (M[A,a])
+
+<br>
+
+3. FIRST(T) = i (α = E, a = i)
+   Find which non-terminal &rarr; i (A &rarr; a)
+   T → i
+   So we put `T → i` into M[T,i]
+
+| Non-terminal | i        | +           | $      |
+| ------------ | -------- | ----------- | ------ |
+| **E**        | E → T E' |             |        |
+| **E'**       |          | E' → + T E' | E' → ε |
+| **T**        | T → i    |             |        |
+
+---
+
+## Naive Top Down Parsing
 
 Think “match the next symbol, recurse.” If next grammar symbol is a terminal, check the next token; if it’s a nonterminal, try each alternative until one succeeds; accept ε (empty) only when allowed.
 
 Subjected to Left Recursion loops, excessive backtracking, limited lookahead, no error recovery
 
-### Predictive Top Down Parsing (better alternative)
+## Predictive Top Down Parsing (better alternative)
 
 - Builds a parse from the start symbol downward, using 1 lookahead token to predict exactly which production to apply—no backtracking.
 
@@ -2138,7 +2302,7 @@ Subjected to Left Recursion loops, excessive backtracking, limited lookahead, no
 2. Then parse that
 3. Combine results
 
-### Setting Up
+### Naive Example
 
 ```scala
 // Grammar Rules
@@ -2159,12 +2323,12 @@ enum T {
 }
 ```
 
-Naive Implementation &rarr; we will need one functon for every gramma rule (or pattern) :
+### Naive Implementation
+[back-to-top](#scala)
+We will need one function for every gramma rule (or pattern) :
 
 - One function to parse XX (two XTok in a row)
 - One function to parse YX (YTok followed by XTok)
-
-### Naive Implementation
 
 ```scala
 enum Result[A] {
@@ -2190,10 +2354,10 @@ def sat(toks:List[LToken])(p:LToken => Boolean):Result[(LToken, List[Token])] = 
 ---
 
 ## Monad Option (Better)
-
+[back-to-top](#scala)
 _refer to parsec.scala for output_
 
-0. Monad Boilerplate
+**Step 0**: Monad Boilerplate
 
 ```scala
 case class Parser[T, A](p: List[T] => Result[(A, List[T])]) {
@@ -2216,7 +2380,9 @@ case class Parser[T, A](p: List[T] => Result[(A, List[T])]) {
 }
 ```
 
-1. Define basic token parsers
+---
+
+**Step 1**: Define basic token parsers
 
 ```scala
 def xTok: Parser[LToken, LToken] =
@@ -2232,9 +2398,15 @@ def yTok: Parser[LToken, LToken] =
   }
 ```
 
-2. Compose for `xx` and `yx` using flatmap/map
+Suppose xTok sees input [XTok, YTok]. It returns Ok((XTok, [YTok])). When flatMap chains to another parser, that next parser receives the remaining [YTok].
 
-This part "brute forces" functions that matches specific sequence of tokens, i.e. if the tokens match the expected patter, the parser returns the corresponding result from your enum, if not it will just fail
+xTok succeeds only when the list starts with XTok; otherwise it fails. Same idea for yTok. These are the atomic building blocks.
+
+---
+
+**Step 2**: Compose for `xx` and `yx` using flatmap/map
+
+This part "brute forces" functions that matches specific sequence of tokens, i.e. if the tokens match the expected pattern, the parser returns the corresponding result from your enum, if not it will just fail
 
 ```scala
 // T ::= xx
@@ -2252,7 +2424,9 @@ val parseYX: Parser[LToken, T] =
   } yield T.YX
 ```
 
-3. Combine all alternatives (not xx and yx)
+---
+
+**Step 3**: Combine all alternatives (not xx and yx)
 
 ```scala
 def or[A](p1: Parser[LToken, A], p2: Parser[LToken, A]): Parser[LToken, A] =
@@ -2266,10 +2440,13 @@ def or[A](p1: Parser[LToken, A], p2: Parser[LToken, A]): Parser[LToken, A] =
 val parseT: Parser[LToken, T] = or(parseXX, parseYX)
 ```
 
+parseXX fails right away if first token isn’t XTok.
+`or` then runs parseYX, which consumes YTok and XTok, leaving [XTok], and returns T.YX.
+
 ---
 
 ## Dealing with Left Recursion
-
+[back-to-top](#scala)
 Solution : Combinators from Parsec Library
 
 ```scala
@@ -2281,12 +2458,34 @@ def optional[T, A](pa: Parser[T, A]): Parser[T, Either[Unit, A]] = {
 
 ```
 
+Many1 and Many
+
+```scala
+def optional[T, A](pa: Parser[T, A]): Parser[T, Either[Unit, A]] = {
+  val p1: Parser[T, Either[Unit, A]] = for (a <- pa) yield (Right(a))
+  val p2: Parser[T, Either[Unit, A]] = Parser(toks => Ok((Left(()), toks)))
+  choice(p1)(p2)
+    }
+
+// one or more
+def many1[T, A](p: Parser[T, A]): Parser[T, List[A]] = for {
+  a <- p
+  as <- many(p)
+    } yield (a :: as)
+
+// zero or more
+def many[T, A](p: Parser[T, A]): Parser[T, List[A]] = ... 
+
+```
+
 ### Math Exp Example
 
 [back-to-top](#scala)
 
+Grammer
+
 ```scala
-//Grammar
+
 E::= T + E
 E::= T
 T::= T * F
@@ -2373,88 +2572,8 @@ Another Example
 // Y' ::= bY'
 // Y' ::= ε
 
-// !Left recursion is only when the leftmost symbol is the same as the non-terminal being defined! //
+// Left recursion is only when the leftmost symbol is the same as the non-terminal being defined!
 // i.e. X ::= Xa... is left recursive because it starts with X
 // but X ::= YX is not left recursive because it starts with Y although it ends with X
 
 ```
-
-### LL(1) Predictive Parsing Table (Step-by-step)
-Grammar (Clean - no left recursion):
-
-```
-E  → T E'
-E' → + T E' | ε
-T  → F T'
-T' → * F T' | ε
-F  → ( E ) | id
-```
-
-#### Key FIRST:
-- FIRST(X) is the set of terminals that **can appear first** when X expands, it never includes nonterminals or later tokens in a sequence
-<br>
-- For FIRST(F) for e.g. , because the grammar is F &rarr; (E) | id, the **FIRST** one that appears is `(` and `id`, therefore: 
-FIRST(F) =  { `(`, `id` }
-<br>
-- For FIRST(T) the **FIRST** that appears is `F`, which means FIRST(T) = FIRST (F) = { `(`, `id` }
-<br>
-- For FIRST(E) the **FIRST** that appears is `T`, which means FIRST(E) = FIRST(T) = FIRST(F) = { `(`, `id` }
-<br>
-- For FIRST(E') the **FIRST** that appears is `+`, then theres another possibility in `ε`, which means FIRST(E) = { `+`, ε }
-<br>
-- For FIRST(T') the **FIRST** that appears is `*`, then theres another possibility in `ε`, which means FIRST(T') = { `*`, ε }
-<br>
-Together:
-- FIRST(F) = { `(`, `id` }
-- FIRST(T) = { `(`, `id` }
-- FIRST(E) = { `(`, `id` }
-- FIRST(E') = { `+`, ε }
-- FIRST(T') = { `*`, ε }
-
-#### Key FOLLOW (highlights): 
-- FOLLOW(X) is the set of terminals that can immediately appear to the right of nonterminal X in some sentential form. plus `$` if A can reach the end of input
-
-- `sentential` form is any string you can get by starting from the grammar's start symbol
-<br>
-
-
-- Initialise: FOLLOW(Start) = `{$}` &rarr; FOLLOW(E) = `{$}`
-<br>
-- For **E &rarr; T E'**, FOLLOW(T) receives:
-  - The terminal "+" because E' can start with +
-  - Everything in FOLLOW(E) because E' can disappear
-    - FOLLOW(E) &rarr; {"`)`", "`$`"}
-      - Because F &rarr; ( E ) | id and `)` follows E
-- All in all, FOLLOW(T) ⊇ { `+`, `)`, `$` }
-- _Think of `$` as a special terminal that represents “no more tokens after this point.”_
-
-
-<br>
-
-
-- FOLLOW(F) = { `)`, `$` }
-- FOLLOW(E) = { `)`, `$` }
-- FOLLOW(E') = { `)`, `$` }
-- FOLLOW(T) ⊇ { `+`, `)`, `$` }
-- FOLLOW(T') ⊇ { `+`, `)`, `$` }
-
-### Predictive table M 
-(rows = nonterminals, cols = lookahead):
-
-Example:
-
-E &rarr; T E'
-- FIRST(T E')
-  - FIRST(T) = {`(`, `id`}
-  - so terminals that can START with T E' are `(` and `id`
-
-
-|          | `id`      | `(`       | `+`          | `*`          | `)`          | `$`          |
-|----------|-----------|-----------|--------------|--------------|--------------|--------------|
-| `E`      | E → T E'  | E → T E'  |              |              |              |              |
-| `E'`     |           |           | E' → + T E'  |              | E' → ε       | E' → ε       |
-| `T`      | T → F T'  | T → F T'  |              |              |              |              |
-| `T'`     |           |           | T' → ε       | T' → * F T'  | T' → ε       | T' → ε       |
-| `F`      | F → id    | F → ( E ) |              |              |              |              |
-
-Cells filled per rules: use FIRST of RHS; if RHS can be ε, use FOLLOW of LHS.
