@@ -725,7 +725,13 @@ We write small-step JVM configurations as:
 
 - `J ⊢ (Δ, S, jis) → (Δ', S', jis')`
 
-where `J` is the JVM program, `Δ` the local-variable environment, `S` the operand stack, and `jis` (JVM instruction sequence) is the current instruction sequence.
+where:
+
+- `J` is the JVM program
+- `Δ` the local-variable environment &rarr; like JVM's numbered storage slots
+  - If Δ(1) = 7, then local slot 1 currently holds 7
+- `S` the operand stack
+- `jis` (JVM instruction sequence) is the current instruction sequence.
 
 Key small-step rules (informal):
 
@@ -893,32 +899,287 @@ So:
 
 ##### 2) Translate PA &rarr; JVM
 
----
+The below will document the step by step translation, with justification at each step which operation semantics is being used and why as well as the updates to local variable and S
 
-For PA line 1: `x` &larr; `7`
+PA program:
 
-JVM emitted: 
-
-```mathematica
-sipush 7   // put a value on stack
-istore 1   // store it into a local slot
+```text
+1:  x <- 7
+2:  t <- x < 5
+3:  ifn t goto 6
+4:  y <- x + 2
+5:  goto 7
+6:  y <- x - 2
+7:  rret <- y
+8:  ret
 ```
 
-**Rule used** : sJPush1
-Why? Because stack is empty (_,_), so we use the "push into empty stack" rule
-**Result**:
-S : (_,_) &rarr; (7,\_)
-Δ (type environment) unchanged
-𝑗𝑖𝑠advances to next instruction
+Mappings:
 
-**Rule used** : sJStore
-Why? Because stack (7,\_); store pops the top value into local slot 1
-**Result**:
+- `M(x)=1`, `M(y)=2`
+- `L(6)=L6`, `L(7)=L7`
 
-S : (7,_) &rarr; (_,\_)
-Δ : Δ → Δ ⊕ (1,7) (so Δ(1)=7)
+JVM program J:
+
+```text
+sipush 7
+istore 1
+
+iload 1
+sipush 5
+if_icmpge L6
+
+iload 1
+sipush 2
+iadd
+istore 2
+igoto L7
+
+ilabel L6
+iload 1
+sipush 2
+isub
+istore 2
+
+ilabel L7
+iload 2
+ireturn
+```
+
+State notation:
+
+- `Δ` = locals map (e.g., `Δ(1)=x`, `Δ(2)=y`)
+- `S` ∈ { `(_,_)`, `(c,_)`, `(c0,c1)` } (same as slide)
+- I’ll show `Before → After` for `Δ` and `S` each step.
 
 ---
 
-**For PA line 2: t &larr; x < 5**
-JVM emitted: 
+# Run A (x = 7): takes the ELSE path (jumps to L6)
+
+Initial:
+
+- Δ = {1:?, 2:?}
+- S = (_, _)
+
+## PA Line 1: `x <- 7` (emits `sipush 7; istore 1`)
+
+1. `sipush 7`
+
+- Rule: **(sJPush1)**
+- Why this rule: stack is empty `(_,_)`, so push goes into first slot.
+- Δ: {1:?, 2:?} → {1:?, 2:?}
+- S: (_,_) → (7,\_)
+
+2. `istore 1`
+
+- Rule: **(sJStore)**
+- Why this rule: `istore` requires a value on stack top `(c,_)` to store.
+- Δ: {1:?, 2:?} → {1:7, 2:?}
+- S: (7,_) → (_,\_)
+
+---
+
+## PA Lines 2–3: `t <- x < 5; ifn t goto 6`
+
+(Compiled as “push x, push 5, then branch if x >= 5”.)
+
+3. `iload 1`
+
+- Rule: **(sJLoad1)**
+- Why this rule: stack is empty `(_,_)`, so load fills first slot.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (_,_) → (Δ(1),_) = (7,_)
+
+4. `sipush 5`
+
+- Rule: **(sJPush2)**
+- Why this rule: stack has one value `(7,_)`, so push fills second slot.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (7,\_) → (7,5)
+
+5. `if_icmpge L6`
+
+- Rule used: **same conditional-branch pattern as (sJCmpNE1)/(sJCmpNE2)**, but with predicate `>=`
+- Why this “jump case”: operands are `(7,5)` and `7 >= 5` is true → jump.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (7,5) → (_,_)
+- Control effect: next `jis` becomes `codeAfterLabel(J, L6)` (jump to ELSE block).
+
+---
+
+## PA Line 6: `y <- x - 2` (label + arithmetic + store)
+
+6. `ilabel L6`
+
+- Rule: **(sJLabel)**
+- Why this rule: labels are markers; they don’t change Δ or S.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (_,_) → (_,_)
+
+7. `iload 1`
+
+- Rule: **(sJLoad1)**
+- Why this rule: stack is empty `(_,_)`.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (_,_) → (7,\_)
+
+8. `sipush 2`
+
+- Rule: **(sJPush2)**
+- Why this rule: stack has one value `(7,_)`.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (7,\_) → (7,2)
+
+9. `isub`
+
+- Rule used: **same stack-shape as (sJAdd)**, but compute `c0 - c1`
+- Why this rule shape: `isub` consumes two stack values `(c0,c1)` and leaves one result.
+- Δ: {1:7, 2:?} → {1:7, 2:?}
+- S: (7,2) → (7-2,_) = (5,_)
+
+10. `istore 2`
+
+- Rule: **(sJStore)**
+- Why this rule: `istore` pops `(c,_)` and writes into local slot 2.
+- Δ: {1:7, 2:?} → {1:7, 2:5}
+- S: (5,_) → (_,\_)
+
+---
+
+## PA Lines 7–8: `rret <- y; ret` (load then return)
+
+11. `ilabel L7`
+
+- Rule: **(sJLabel)**
+- Why this rule: labels don’t change machine state.
+- Δ: {1:7, 2:5} → {1:7, 2:5}
+- S: (_,_) → (_,_)
+
+12. `iload 2`
+
+- Rule: **(sJLoad1)**
+- Why this rule: stack is empty `(_,_)`.
+- Δ: {1:7, 2:5} → {1:7, 2:5}
+- S: (_,_) → (5,\_)
+
+13. `ireturn`
+
+- Rule: (not shown on your screenshot page)
+- What happens: program halts and returns the top stack value (here `5`).
+- Δ: unchanged
+- S: consumed by return (conceptually returns `5` and stops)
+
+Result of Run A: returns **5**.
+
+---
+
+# Run B (x = 3): takes the THEN path (falls through, uses `igoto L7`)
+
+This run exists so you can see Line 4 and Line 5 execute with their rules.
+
+Change only PA Line 1 to: `x <- 3` (so `3 >= 5` is false).
+
+Initial:
+
+- Δ = {1:?, 2:?}
+- S = (_, _)
+
+## PA Line 1: `x <- 3`
+
+1. `sipush 3`
+
+- Rule: **(sJPush1)** (stack empty)
+- Δ: {1:?, 2:?} → {1:?, 2:?}
+- S: (_,_) → (3,\_)
+
+2. `istore 1`
+
+- Rule: **(sJStore)**
+- Δ: {1:?, 2:?} → {1:3, 2:?}
+- S: (3,_) → (_,\_)
+
+## PA Lines 2–3: compare + branch
+
+3. `iload 1`
+
+- Rule: **(sJLoad1)** (stack empty)
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (_,_) → (3,\_)
+
+4. `sipush 5`
+
+- Rule: **(sJPush2)** (one item already)
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (3,\_) → (3,5)
+
+5. `if_icmpge L6`
+
+- Rule used: **same conditional-branch pattern as (sJCmpNE1)/(sJCmpNE2)**, but with `>=`
+- Why this “fall-through case”: `3 >= 5` is false → do NOT jump.
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (3,5) → (_,_)
+- Control effect: continue with the next instruction (THEN block).
+
+## PA Line 4: `y <- x + 2`
+
+6. `iload 1`
+
+- Rule: **(sJLoad1)** (stack empty)
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (_,_) → (3,\_)
+
+7. `sipush 2`
+
+- Rule: **(sJPush2)** (one item already)
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (3,\_) → (3,2)
+
+8. `iadd`
+
+- Rule: **(sJAdd)**
+- Why this rule: `iadd` requires two operands `(c0,c1)` and produces `(c0+c1,_)`.
+- Δ: {1:3, 2:?} → {1:3, 2:?}
+- S: (3,2) → (5,\_)
+
+9. `istore 2`
+
+- Rule: **(sJStore)**
+- Δ: {1:3, 2:?} → {1:3, 2:5}
+- S: (5,_) → (_,\_)
+
+## PA Line 5: `goto 7`
+
+10. `igoto L7`
+
+- Rule: **(sJGoto)**
+- Why this rule: unconditional jump replaces `jis` with `codeAfterLabel(J, L7)`.
+- Δ: {1:3, 2:5} → {1:3, 2:5}
+- S: (_,_) → (_,_)
+- Control effect: skip ELSE block; jump to code after `ilabel L7`.
+
+## PA Lines 7–8: return
+
+11. `iload 2`
+
+- Rule: **(sJLoad1)** (stack empty)
+- Δ: {1:3, 2:5} → {1:3, 2:5}
+- S: (_,_) → (5,\_)
+
+12. `ireturn`
+
+- Rule: (not shown on your screenshot page)
+- What happens: halt and return top stack value `5`.
+
+Result of Run B: returns **5**.
+
+---
+
+## Quick “why rule X vs rule Y” summary
+
+- Use **(sJPush1)** when `S = (_ , _)`; use **(sJPush2)** when `S = (c , _)`.
+- Use **(sJLoad1)** when `S = (_ , _)`; use **(sJLoad2)** when `S = (c , _)`.
+- Use **(sJStore)** when `S = (c , _)` (needs one value to store).
+- Use **(sJAdd)** when `S = (c0 , c1)` (needs two values).
+- Use **(sJGoto)** for `igoto l'` to jump via `codeAfterLabel(J, l')`.
+- Use **(sJLabel)** for `ilabel l` (no state change).
+- Conditional `if_icmpge` follows the **same jump/fall-through structure** as **(sJCmpNE1)/(sJCmpNE2)**.
