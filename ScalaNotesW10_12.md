@@ -554,21 +554,27 @@ Recall the compiler pipeline
 
 We are at the last part!
 
+---
+
 ### Instruction Selection
 
 1. **1-address instruction**
 
 - Stack machine &rarr; JVM
 
-- PA, ARM
-
 ```
 # operands on stack; op pops args, pushes result
-iload a         # push a
-iload b         # push b
-iadd            # pop a,b; push (a+b)
-istore t1       # t1 = (a+b)
+# MOST Complex instruction set with stack for computation
+# Minimal registers needed, JVM has only 3 registers
+# Requires more instructions but less registers
+
+push 1
+push 2
+add
+store r #load it back to variable
 ```
+
+---
 
 2.  **2-address instruction (CISC) architecture**
 
@@ -577,13 +583,342 @@ istore t1       # t1 = (a+b)
 
 ```
 # op dst, src   (dst is both input and output)
-mov r1, a       # r1 = a
-add r1, b       # r1 = r1 + b
+# more complex instruction set, but fewer registers
+
+load x 1
+load y 2
+add x y
+
+# r is the same as x
 ```
+
+---
 
 3. **3-address instruction (RISC) architecture**
 
+- ARM, Pseudo Assembly
+- RISC because the number of lines of code have reduced
+
 ```
 # dst <- src1 op src2
-t1 <- a + b
+# simple instruction set BUT more registers and tempvar needed
+
+x <- 1
+y <- 2
+r <- x + y
+
+load x 1
+load y 2
+add r x y
 ```
+
+---
+
+### Assembly vs Machine Code
+
+**Assembly** &rarr; human legible
+&darr; Assembler + linker &darr;
+**Machine** &rarr; binary (not human legible)
+
+---
+
+### JVM bytecode (1-address)
+
+Goal : SIMP PA → JVM
+
+(JVM Instructions):
+
+- `jis ::= []`
+  - Empty instruction sequence.
+- `jis ::= ji jis`
+  - Sequence of JVM instructions.
+    (JVM Instruction):
+- `ji ::= ilabel`
+  - Label marking a jump target.
+- `ji ::= iload n`
+  - Load local variable onto stack.
+- `ji ::= istore n`
+  - Store top stack value into local.
+- `ji ::= iadd`
+  - Pop two values, push their sum.
+- `ji ::= isub`
+  - Pop two values, push their difference.
+- `ji ::= imul`
+  - Pop two values, push their product.
+- `ji ::= if_icmpge`
+  - Compare two; jump if first ≥ second.
+- `ji ::= if_icmpne`
+  - Compare two; jump if values unequal.
+- `ji ::= goto l`
+  - Unconditional jump to label `l`.
+- `ji ::= ispush c`
+  - Push constant `c` onto stack.
+- `ji ::= ireturn`
+  - Return integer from the method.
+    (JVM local vars):
+- `n ::= 1`
+- `n ::= 2`
+- ...
+  - Local variable slot indices.
+    (constant):
+- `c ::= -32768`
+- ...
+- `c ::= 0`
+- ...
+- `c ::= 32767`
+
+  - Signed 16-bit constant range.
+
+- 1: a register for the first operand and result
+- 2: a register for the second operand
+- 3: a register for controlling the state of the stack operation (we can't use)
+
+---
+
+**An Example (PA → JVM)**
+
+```text
+   // PA1                          // JVM (illustrative)
+############           ############################################################
+1:  x <- input          iload 1        // push the content of input to r0
+2:  s <- 0              istore 2       // pop r0's content to x
+3:  c <- 0              sipush 0       // push the value 0 to r0
+4:  b <- c < x          istore 3       // pop r0 to s
+5:  ifn b goto 9        sipush 0       // push the value 0 to r0
+6:  s <- c + s          istore 4       // pop r0 to c
+7:  c <- c + 1          ilabel 11      // mark label 11
+8:  goto 4              iload 4        // push the content of c to r0
+9:  rret <- s           iload 2        // push the contetn of x to r1
+10: ret                 if_icmpge 12   // if r0 >= r1 jump, pop both r0 r1
+
+                        iload 4        // push the content of c to r0
+                        iload3         // push the content of s to r1
+                        iadd           // sum up r0 and r1 and result in r0
+                        istore 3       // pop r0 to s
+                        iload 4        // push the content of c to r0
+                        sipush 1       // push a constant 1 to r1
+                        iadd
+                        istore 4       // pop r0 to c
+                        igoto 11
+                        ilabel 12
+                        iload 3        // push the content of s to r0
+                        ireturn
+```
+
+PA variables → JVM locals:
+
+- input → 1,
+- x → 2,
+- s → 3,
+- c → 4
+
+PA labels → JVM labels:
+
+- 4 → 11,
+- 9 → 12
+
+---
+
+### Operational Semantics of JVM
+
+We write small-step JVM configurations as:
+
+- `J ⊢ (Δ, S, jis) → (Δ', S', jis')`
+
+where `J` is the JVM program, `Δ` the local-variable environment, `S` the operand stack, and `jis` (JVM instruction sequence) is the current instruction sequence.
+
+Key small-step rules (informal):
+
+$$
+\textbf{(sJLoad1)}\qquad
+J \vdash (\Delta,\ \_,\ \_,\ \text{iload } n;\ jis)\ \to\ (\Delta,\ \Delta(n),\ \_,\ jis)
+$$
+
+_Meaning:_ Load local `n` onto an empty stack.
+
+$$
+\textbf{(sJLoad2)}\qquad
+J \vdash (\Delta,\ c,\ \_,\ \text{iload } n;\ jis)\ \to\ (\Delta,\ c,\ \Delta(n),\ jis)
+$$
+
+_Meaning:_ Load local `n` onto the second stack slot.
+
+$$
+\textbf{(sJPush1)}\qquad
+J \vdash (\Delta,\ \_,\ \_,\ \text{sipush } c;\ jis)\ \to\ (\Delta,\ c,\ \_,\ jis)
+$$
+
+_Meaning:_ Push constant `c` onto an empty stack.
+
+$$
+\textbf{(sJPush2)}\qquad
+J \vdash (\Delta,\ c_0,\ \_,\ \text{sipush } c_1;\ jis)\ \to\ (\Delta,\ c_0,\ c_1,\ jis)
+$$
+
+_Meaning:_ Push constant `c1` onto the second stack slot.
+
+$$
+\textbf{(sJLabel)}\qquad
+J \vdash (\Delta,\ r_0,\ r_1,\ \text{ilabel } l;\ jis)\ \to\ (\Delta,\ r_0,\ r_1,\ jis)
+$$
+
+_Meaning:_ Labels are markers; they don’t change state.
+
+$$
+\textbf{(sJStore)}\qquad
+J \vdash (\Delta,\ c,\ \_,\ \text{istore } n;\ jis)\ \to\ (\Delta \oplus (n,c),\ \_,\ \_,\ jis)
+$$
+
+_Meaning:_ Pop stack top and store into local slot `n`.
+
+$$
+\textbf{(sJAdd)}\qquad
+J \vdash (\Delta,\ c_0,\ c_1,\ \text{iadd};\ jis)\ \to\ (\Delta,\ c_0 + c_1,\ \_,\ jis)
+$$
+
+_Meaning:_ Pop two integers, push their sum.
+
+$$
+\textbf{(sJGoto)}\qquad
+J \vdash (\Delta,\ r_0,\ r_1,\ \text{igoto } l';\ jis)\ \to\ (\Delta,\ r_0,\ r_1,\ \text{codeAfterLabel}(J,l'))
+$$
+
+_Meaning:_ Jump to the instruction sequence after label `l'`.
+
+$$
+\textbf{(sJCmpNE1)}\qquad
+\frac{c_0 \ne c_1 \qquad jis' = \text{codeAfterLabel}(J,l')}
+     {J \vdash (\Delta,\ c_0,\ c_1,\ \text{if\_icmpne } l';\ jis)\ \to\ (\Delta,\ \_,\ \_,\ jis')}
+$$
+
+_Meaning:_ If values differ, jump to label `l'`.
+
+$$
+\textbf{(sJCmpNE2)}\qquad
+\frac{c_0 = c_1}
+     {J \vdash (\Delta,\ c_0,\ c_1,\ \text{if\_icmpne } l';\ jis)\ \to\ (\Delta,\ \_,\ \_,\ jis)}
+$$
+
+_Meaning:_ If values equal, continue to the next instruction.
+
+---
+
+$$
+\textbf{codeAfterLabel}(\text{ireturn},\ l)\ =\ \text{error}
+$$
+
+_Meaning:_ Error if label wasn’t found before return.
+
+$$
+\textbf{codeAfterLabel}(\text{ilabel } l';\ jis,\ l)\ =\
+\begin{cases}
+jis & \text{if } l = l' \\
+\text{codeAfterLabel}(jis,\ l) & \text{otherwise}
+\end{cases}
+$$
+
+_Meaning:_ If label matches, return remaining code; else keep searching.
+
+$$
+\textbf{codeAfterLabel}(ji;\ jis,\ l)\ =\ \text{codeAfterLabel}(jis,\ l)
+$$
+
+_Meaning:_ Skip non-label instruction and continue searching for the label.
+
+Notes:
+
+- `codeAfterLabel(J, l)` denotes the instruction sequence of `J` starting at label `l`.
+- These rules are the standard small-step behaviour used in the lecture slides.
+
+---
+
+### From PA to JVM
+
+M - a mapping from PA tempvar to JVM local var
+
+L - a mapping from PA labels (which are used as the targets in some jump instructions) to JVM labels
+
+**3 rules**
+
+```text
+M, L ⊢ jis_PA ⇒ jis_JVM
+  -- Translate PA instruction sequence `jis_PA` to JVM `jis_JVM` using mappings.
+
+M, L ⊢ S_PA ⇒ jis_JVM
+  -- Translate PA operand-stack `S_PA` into JVM pushes/instructions.
+
+L ⊢ l_PA ⇒ jis_JVM
+  -- Translate PA label `l_PA` into the JVM label and its code.
+```
+
+---
+
+#### Example (PA &rarr; JVM)
+
+```mathematica
+1:  x <- 7
+2:  t <- x < 10
+3:  ifn t goto 6
+4:  y <- x + 1
+5:  goto 7
+6:  y <- x - 1
+7:  rret <- y
+8:  ret
+```
+
+_t is a boolean temp in PA (result of comparison)._
+
+_ifn t goto 6 means “if NOT t, jump to label 6”._
+
+##### 1) Pick the mappings M and L
+
+Variable-to-local mapping M
+
+- `M(x) = 1`
+- `M(y) = 1`
+
+Label mapping L
+
+- Only labels that are jump targets need JVM labels
+
+Jump targets in PA:
+
+- line 6 (target of goto 6)
+- line 7 (target of goto 7)
+
+So:
+
+- L(6) = L6
+- L(7) = L7
+
+##### 2) Translate PA &rarr; JVM
+
+---
+
+For PA line 1: `x` &larr; `7`
+
+JVM emitted: 
+
+```mathematica
+sipush 7   // put a value on stack
+istore 1   // store it into a local slot
+```
+
+**Rule used** : sJPush1
+Why? Because stack is empty (_,_), so we use the "push into empty stack" rule
+**Result**:
+S : (_,_) &rarr; (7,\_)
+Δ (type environment) unchanged
+𝑗𝑖𝑠advances to next instruction
+
+**Rule used** : sJStore
+Why? Because stack (7,\_); store pops the top value into local slot 1
+**Result**:
+
+S : (7,_) &rarr; (_,\_)
+Δ : Δ → Δ ⊕ (1,7) (so Δ(1)=7)
+
+---
+
+**For PA line 2: t &larr; x < 5**
+JVM emitted: 
