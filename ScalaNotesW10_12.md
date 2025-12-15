@@ -1183,3 +1183,146 @@ Result of Run B: returns **5**.
 - Use **(sJGoto)** for `igoto l'` to jump via `codeAfterLabel(J, l')`.
 - Use **(sJLabel)** for `ilabel l` (no state change).
 - Conditional `if_icmpge` follows the **same jump/fall-through structure** as **(sJCmpNE1)/(sJCmpNE2)**.
+
+---
+
+## Register Allocation Problem (12b)
+
+PA is already a 3-address code
+
+- Unlimited registers
+- Unlimited tempVar
+- Operation can be applied to both registers and tempVar
+
+But in reality,
+
+- Limited registers
+- Large set of tempVar but never unlimtied
+- Most operation only work on registers
+
+Problem:
+
+Given program `p`, allocate variables/results to `k` registers such that:
+
+- behavior stays the same
+- spilling is minimized
+
+So its an optimisation problem
+
+### Interference Graph
+
+A data structure to reason able the constraints of register allocation
+
+2 tempvar are interferring when they are both "live" at the same time in the program
+
+#### Goal (why we build this graph)
+
+We want to **allocate a small number of registers** to many temporaries.
+Two temporaries **cannot share the same register** if they are **live at the same time**.
+The **interference graph** encodes exactly those “cannot-share” constraints.
+
+---
+
+The PA program (PA1) + liveness info shown on the slide
+
+```text
+// PA1
+1:  x    <- input      // {input}
+2:  y    <- x + 1      // {x}
+3:  z    <- y + 1      // {y}
+4:  w    <- y * z      // {y, z}
+5:  rret <- w          // {w}
+6:  ret               // {}
+```
+
+Interpretation of the `{ ... }` on each line:
+
+- It shows which temporaries are **live at that program point** (their values will be needed later).
+- If **two names appear together** in the same set, they **overlap in time** → they **interfere**.
+
+---
+
+## 2) Build the interference graph from liveness
+
+### Rule (what edges mean)
+
+- Make one node per temporary: `input, x, y, z, w`.
+- Add an **undirected edge** between `A` and `B` if there exists **any point** where both are live together.
+
+### Apply the rule to PA1
+
+Look at the sets:
+
+- Line 1: `{input}` → no pair → no edge
+- Line 2: `{x}` → no pair → no edge
+- Line 3: `{y}` → no pair → no edge
+- Line 4: `{y, z}` → **pair exists** → add edge **`y — z`**
+- Line 5: `{w}` → no pair → no edge
+
+So the only interference constraint here is:
+
+- **`y` interferes with `z`**
+
+That’s exactly the single edge drawn on the slide.
+
+---
+
+## 3) The interference graph (Mermaid)
+
+```mermaid
+graph TB
+  input["input"]
+  x["x"]
+  y["y"]
+  z["z"]
+  w["w"]
+
+  y --- z
+```
+
+---
+
+## 4) Use the graph to assign registers (graph coloring idea)
+
+### What register allocation is doing here
+
+Think of each register as a “color”.
+
+- If two nodes are connected by an edge, they must have **different colors**.
+- If two nodes are **not** connected, they _may_ share a color/register (as long as no other overlap forces separation).
+
+### Apply to this graph
+
+Only `y` and `z` are adjacent, so:
+
+- `y` must be in a different register from `z`
+- everyone else can reuse either register since they don’t overlap with a conflict
+
+One valid assignment (matching the slide’s idea):
+
+- `z → r1`
+- `y → r0`
+- `input, x, w → r0` (they don’t interfere with `y` or `z` in a conflicting way)
+
+---
+
+## 5) Interference graph + one concrete register assignment (Mermaid)
+
+```mermaid
+graph TB
+  input["input(r0)"]
+  x["x(r0)"]
+  y["y(r0)"]
+  z["z(r1)"]
+  w["w(r0)"]
+
+  y --- z
+```
+
+---
+
+## 6) Why your Mermaid error happened (and how this fixes it)
+
+Mermaid is picky about node text formatting.
+Using quotes like `id["text"]` is safest, especially when labels contain parentheses like `input(r0)`.
+Also, put each node definition on its own line (as above).
